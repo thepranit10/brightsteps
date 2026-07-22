@@ -1,51 +1,68 @@
 import os
 from io import BytesIO
-from django.core.files.storage import Storage
+from django.core.files.storage import Storage, FileSystemStorage
 from django.core.files.base import ContentFile
 from django.utils.deconstruct import deconstructible
-from supabase import create_client, Client
 from dotenv import load_dotenv
 
 load_dotenv()
-
-url: str = os.getenv("SUPABASE_URL", "")
-key: str = os.getenv("SUPABASE_KEY", "")
-supabase: Client = create_client(url, key)
 
 @deconstructible
 class SupabaseStorage(Storage):
     def __init__(self, bucket_name='homework_submissions'):
         self.bucket_name = bucket_name
+        self._client = None
+
+    @property
+    def client(self):
+        if self._client is None:
+            url: str = os.getenv("SUPABASE_URL", "")
+            key: str = os.getenv("SUPABASE_KEY", "")
+            if url and key:
+                try:
+                    from supabase import create_client
+                    self._client = create_client(url, key)
+                except Exception as e:
+                    print("Error initializing Supabase client:", e)
+        return self._client
 
     def _open(self, name, mode='rb'):
-        res = supabase.storage.from_(self.bucket_name).download(name)
-        return ContentFile(res)
+        if self.client:
+            try:
+                res = self.client.storage.from_(self.bucket_name).download(name)
+                return ContentFile(res)
+            except Exception as e:
+                print("Error downloading from Supabase:", e)
+        return FileSystemStorage()._open(name, mode)
 
     def _save(self, name, content):
         content_bytes = content.read()
-        # Ensure we are at the start of the file if it's already been read
         if hasattr(content, 'seek'):
             content.seek(0)
             
-        try:
-            supabase.storage.from_(self.bucket_name).upload(
-                path=name,
-                file=content_bytes,
-                file_options={"content-type": getattr(content, 'content_type', 'application/octet-stream')}
-            )
-        except Exception as e:
-            # If the file already exists, it might throw an error. 
-            # In a production app, we would handle naming collisions (like django does).
-            print("Error uploading to supabase:", e)
-            
-        return name
+        if self.client:
+            try:
+                self.client.storage.from_(self.bucket_name).upload(
+                    path=name,
+                    file=content_bytes,
+                    file_options={"content-type": getattr(content, 'content_type', 'application/octet-stream')}
+                )
+                return name
+            except Exception as e:
+                print("Error uploading to Supabase:", e)
+
+        return FileSystemStorage()._save(name, content)
 
     def exists(self, name):
-        # We can list files to see if it exists, or just return False to always upload
         return False 
 
     def url(self, name):
-        return supabase.storage.from_(self.bucket_name).get_public_url(name)
+        if self.client:
+            try:
+                return self.client.storage.from_(self.bucket_name).get_public_url(name)
+            except Exception as e:
+                print("Error getting Supabase URL:", e)
+        return FileSystemStorage().url(name)
 
     def get_available_name(self, name, max_length=None):
         return name
