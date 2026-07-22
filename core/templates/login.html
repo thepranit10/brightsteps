@@ -5,87 +5,245 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BrightSteps Admin Login</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+        }
+
         body {
+            min-height: 100vh;
+            display: flex;
             justify-content: center;
             align-items: center;
-            background: #F8FAFC;
+            background: radial-gradient(circle at 15% 20%, rgba(63, 81, 181, 0.15) 0%, transparent 45%),
+                        radial-gradient(circle at 85% 80%, rgba(236, 72, 153, 0.12) 0%, transparent 45%),
+                        linear-gradient(135deg, #F8FAFC 0%, #EFF6FF 100%);
             color: #0F172A;
+            position: relative;
+            overflow: hidden;
+            padding: 1.5rem;
         }
+
+        /* Ambient Glowing Background Orbs */
+        .glass-orb-1 {
+            position: absolute;
+            top: 15%;
+            left: 20%;
+            width: 320px;
+            height: 320px;
+            background: radial-gradient(circle, rgba(63, 81, 181, 0.25) 0%, rgba(63, 81, 181, 0) 70%);
+            filter: blur(50px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .glass-orb-2 {
+            position: absolute;
+            bottom: 15%;
+            right: 20%;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.22) 0%, rgba(236, 72, 153, 0) 70%);
+            filter: blur(50px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
         .login-wrapper {
             position: relative;
             width: 100%;
             max-width: 440px;
-            padding: 1rem;
+            z-index: 1;
         }
-        .login-card {
-            padding: 3rem 2.5rem;
-            border-radius: 32px;
-            background: #FFFFFF;
-            border: 1px solid #E2E8F0;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+
+        /* Frosted Glassmorphic Login Card */
+        .login-card-glass {
+            padding: 3.25rem 2.5rem;
+            border-radius: 36px;
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            border: 1px solid rgba(255, 255, 255, 0.85);
+            box-shadow: 0 25px 50px -12px rgba(63, 81, 181, 0.15), 
+                        0 0 0 1px rgba(255, 255, 255, 0.6);
+            transition: all 0.35s ease;
         }
+
+        .login-card-glass:hover {
+            box-shadow: 0 30px 60px -10px rgba(63, 81, 181, 0.2), 
+                        0 0 0 1px rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+        }
+
         .login-brand {
-            font-size: 2.4rem;
-            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.65rem;
+            font-size: 2.3rem;
+            font-weight: 900;
+            color: #0F172A;
             margin-bottom: 0.5rem;
-            letter-spacing: -0.5px;
+            letter-spacing: -0.8px;
         }
+
+        .login-brand span {
+            color: #EC4899;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 800;
+            font-size: 0.88rem;
+            color: #334155;
+            margin-bottom: 0.5rem;
+        }
+
         .input-icon-wrapper {
             position: relative;
         }
+
         .input-icon-wrapper i {
             position: absolute;
-            left: 1.1rem;
+            left: 1.25rem;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--text-muted);
+            color: #94A3B8;
             font-size: 1.1rem;
+            transition: color 0.3s ease;
         }
-        .input-icon-wrapper input {
-            padding-left: 3rem;
+
+        .form-control-glass {
+            width: 100%;
+            padding: 0.9rem 1.1rem 0.9rem 3.2rem;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.85);
+            border: 1.5px solid #CBD5E1;
+            color: #0F172A;
+            font-size: 0.98rem;
+            font-weight: 600;
+            outline: none;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .form-control-glass:focus {
+            background: #FFFFFF;
+            border-color: #3F51B5;
+            box-shadow: 0 0 0 4px rgba(63, 81, 181, 0.14);
+        }
+
+        .form-control-glass:focus + i, .input-icon-wrapper:focus-within i {
+            color: #3F51B5;
+        }
+
+        /* Glassmorphic Sign-In Button */
+        .btn-signin-glow {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #3F51B5 0%, #10B981 100%);
+            color: #FFFFFF;
+            font-size: 1rem;
+            font-weight: 800;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(63, 81, 181, 0.3);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.65rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-signin-glow:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 35px rgba(63, 81, 181, 0.45);
+        }
+
+        .back-home-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            margin-top: 1.75rem;
+            color: #64748B;
+            font-weight: 700;
+            font-size: 0.88rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .back-home-link:hover {
+            color: #3F51B5;
         }
     </style>
 </head>
 <body>
 
+    <!-- Ambient Glass Orbs -->
+    <div class="glass-orb-1"></div>
+    <div class="glass-orb-2"></div>
+
     <div class="login-wrapper">
-        <div class="login-card">
-            <div class="brand login-brand" style="justify-content: center;">
-                <i class="fa-solid fa-graduation-cap"></i> Bright<span>Steps</span>
+        <div class="login-card-glass">
+            
+            <div class="login-brand">
+                <i class="fa-solid fa-graduation-cap" style="color: #EC4899;"></i> Bright<span>Steps</span>
             </div>
-            <p style="text-align: center; color: var(--text-muted); font-size: 0.95rem; margin-bottom: 2rem; font-weight: 500;">
+            
+            <p style="text-align: center; color: #64748B; font-size: 0.95rem; margin-bottom: 2rem; font-weight: 600;">
                 Primary School Administration Portal
             </p>
             
             {% if error %}
-                <div style="background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.3); color: var(--danger); padding: 0.85rem 1.15rem; border-radius: var(--radius-sm); margin-bottom: 1.5rem; font-size: 0.9rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem;">
+                <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.25); color: #EF4444; padding: 0.85rem 1.15rem; border-radius: 16px; margin-bottom: 1.5rem; font-size: 0.9rem; font-weight: 700; display: flex; align-items: center; gap: 0.6rem;">
                     <i class="fa-solid fa-circle-exclamation"></i> {{ error }}
                 </div>
             {% endif %}
 
             <form method="POST" action="{% url 'login' %}">
                 {% csrf_token %}
+                
                 <div class="form-group">
                     <label class="form-label" for="username">Admin Username</label>
                     <div class="input-icon-wrapper">
+                        <input type="text" id="username" name="username" class="form-control-glass" required placeholder="Enter admin username">
                         <i class="fa-solid fa-user"></i>
-                        <input type="text" id="username" name="username" class="form-control" required placeholder="Enter username">
                     </div>
                 </div>
+
                 <div class="form-group" style="margin-bottom: 2rem;">
                     <label class="form-label" for="password">Password</label>
                     <div class="input-icon-wrapper">
+                        <input type="password" id="password" name="password" class="form-control-glass" required placeholder="Enter admin password">
                         <i class="fa-solid fa-lock"></i>
-                        <input type="password" id="password" name="password" class="form-control" required placeholder="Enter password">
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 0.9rem; font-size: 1rem; border-radius: var(--radius-md);">
+
+                <button type="submit" class="btn-signin-glow">
                     Sign In to Dashboard <i class="fa-solid fa-arrow-right"></i>
                 </button>
             </form>
+
+            <div style="text-align: center;">
+                <a href="{% url 'home_page' %}" class="back-home-link">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Main Homepage
+                </a>
+            </div>
+
         </div>
     </div>
 
