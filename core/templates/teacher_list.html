@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}Teachers - BrightSteps{% endblock %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+    <h2>Manage Teachers</h2>
+    <div style="display: flex; gap: 1rem; align-items: center;">
+        <form method="GET" style="display: flex; gap: 0.5rem; align-items: center;">
+            <select name="assigned_class" onchange="this.form.submit()" class="form-control" style="padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.9rem;">
+                <option value="All" {% if not selected_class or selected_class == 'All' %}selected{% endif %}>Filter Class: All</option>
+                {% for c in class_choices %}
+                    <option value="{{ c }}" {% if selected_class == c %}selected{% endif %}>{{ c }}</option>
+                {% endfor %}
+            </select>
+        </form>
+        <a href="{% url 'teacher_create' %}" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Add Teacher</a>
+    </div>
+</div>
+
+<div class="glass" style="padding: 1rem; border-radius: var(--radius-lg); overflow-x: auto;">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Subject Specialty</th>
+                <th>Assigned Class</th>
+                <th>Email</th>
+                <th>Joined Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for teacher in teachers %}
+            <tr>
+                <td style="font-weight: 500; color: var(--primary);">{{ teacher.name }}</td>
+                <td><span style="background: rgba(16, 185, 129, 0.1); color: var(--success); padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600;">{{ teacher.subject_specialty }}</span></td>
+                <td><span style="background: rgba(59, 130, 246, 0.1); color: var(--primary); padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600;"><i class="fa-solid fa-graduation-cap"></i> {{ teacher.assigned_class|default:"Class 1" }}</span></td>
+                <td>{{ teacher.email }}</td>
+                <td style="color: var(--text-muted); font-size: 0.9rem;">{{ teacher.joined_date|date:"M d, Y" }}</td>
+                <td style="display: flex; gap: 0.5rem; align-items: center;">
+                    <a href="{% url 'teacher_edit' teacher.id %}" class="btn btn-sm" style="background: rgba(59, 130, 246, 0.1); color: var(--primary);"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <form method="POST" action="{% url 'teacher_delete' teacher.id %}" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-sm" style="background: rgba(239, 68, 68, 0.1); color: var(--danger);"><i class="fa-solid fa-trash"></i></button>
+                    </form>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6" style="text-align: center; color: var(--text-muted); padding: 2rem;">No teachers found. Add one to get started!</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

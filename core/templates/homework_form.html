@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block page_title %}{{ action_title }} Homework{% endblock %}
+
+{% block content %}
+<div class="glass" style="padding: 2rem; border-radius: var(--radius-lg); max-width: 800px;">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label class="form-label" for="title">Homework Title</label>
+            <input type="text" id="title" name="title" class="form-control" value="{{ homework.title|default:'' }}" required placeholder="e.g., Chapter 5 Math Exercises">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" class="form-control" value="{{ homework.subject|default:'' }}" required placeholder="e.g., Mathematics">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="due_date">Due Date</label>
+            <input type="date" id="due_date" name="due_date" class="form-control" value="{{ homework.due_date|date:'Y-m-d'|default:'' }}" required>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="description">Description (Optional)</label>
+            <textarea id="description" name="description" class="form-control" rows="5" placeholder="Provide details about the assignment...">{{ homework.description|default:'' }}</textarea>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="attachment">Attachment (PDF/Photo) (Optional)</label>
+            <input type="file" id="attachment" name="attachment" class="form-control" accept="image/*,.pdf">
+            {% if homework.attachment %}
+                <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-muted);">Current file: <a href="{{ homework.attachment.url }}" target="_blank" style="color: var(--primary);">View</a></p>
+            {% endif %}
+        </div>
+
+        <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+            <button type="submit" class="btn btn-primary">Save Homework</button>
+            <a href="{% url 'homework_list' %}" class="btn" style="background: rgba(0,0,0,0.05);">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

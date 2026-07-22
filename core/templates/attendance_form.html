@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}{{ action_title }} Attendance - BrightSteps{% endblock %}
+
+{% block content %}
+<div class="glass" style="padding: 2rem; border-radius: var(--radius-lg); max-width: 600px;">
+    <h2 style="margin-bottom: 1.5rem;"><i class="fa-solid fa-clipboard-user" style="color: var(--primary);"></i> {{ action_title }} Attendance</h2>
+    
+    <form method="POST">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label class="form-label" for="date">Date</label>
+            <input type="date" id="date" name="date" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="student_id">Student</label>
+            <select id="student_id" name="student_id" class="form-control" required>
+                <option value="">Select a Student...</option>
+                {% for student in students %}
+                    <option value="{{ student.id }}">{{ student.name }} ({{ student.roll_number }})</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label" for="status">Status</label>
+            <select id="status" name="status" class="form-control" required>
+                <option value="Present">Present</option>
+                <option value="Absent">Absent</option>
+                <option value="Late">Late</option>
+            </select>
+        </div>
+
+        <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+            <button type="submit" class="btn btn-primary">Save Attendance</button>
+            <a href="{% url 'attendance_list' %}" class="btn" style="background: rgba(0,0,0,0.05);">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

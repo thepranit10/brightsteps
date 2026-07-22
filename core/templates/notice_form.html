@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block page_title %}{{ action_title }} School Notice{% endblock %}
+
+{% block content %}
+<div class="glass" style="padding: 2rem; border-radius: var(--radius-lg); max-width: 800px;">
+    <form method="POST">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label class="form-label" for="title_en">Notice Title (English)</label>
+            <input type="text" id="title_en" name="title_en" class="form-control" required placeholder="e.g., Parent-Teacher Meeting Agenda">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="title_mr">Notice Title (Marathi)</label>
+            <input type="text" id="title_mr" name="title_mr" class="form-control" required placeholder="उदा. पालक-शिक्षक सभा अजेंडा">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="content_en">Content (English)</label>
+            <textarea id="content_en" name="content_en" class="form-control" rows="5" required placeholder="Detailed message in English..."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="content_mr">Content (Marathi)</label>
+            <textarea id="content_mr" name="content_mr" class="form-control" rows="5" required placeholder="तपशीलवार संदेश मराठीमध्ये..."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="author_name">Author Name</label>
+            <input type="text" id="author_name" name="author_name" class="form-control" required placeholder="e.g., Headmaster / Class Teacher">
+        </div>
+
+        <div class="form-group" style="display: flex; align-items: center; gap: 0.5rem; margin-top: 1rem;">
+            <input type="checkbox" id="is_urgent" name="is_urgent" style="width: auto;">
+            <label class="form-label" for="is_urgent" style="margin-bottom: 0; cursor: pointer;">Mark as Urgent (Important Notice)</label>
+        </div>
+
+        <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+            <button type="submit" class="btn btn-primary">Save Notice</button>
+            <a href="{% url 'notice_list' %}" class="btn" style="background: rgba(0,0,0,0.05);">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

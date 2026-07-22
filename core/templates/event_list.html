@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block page_title %}Calendar Events{% endblock %}
+
+{% block content %}
+<div style="display: flex; justify-content: flex-end; margin-bottom: 1.5rem;">
+    <a href="{% url 'event_create' %}" class="btn btn-primary">
+        <i class="fa-solid fa-plus"></i> Add New Event
+    </a>
+</div>
+
+<div class="glass data-table-wrapper">
+    <table>
+        <thead>
+            <tr>
+                <th>Title (English)</th>
+                <th>Title (Marathi)</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Color Tag</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for event in events %}
+            <tr>
+                <td style="font-weight: 500; color: var(--primary);">{{ event.title_en }}</td>
+                <td>{{ event.title_mr }}</td>
+                <td>{{ event.date|date:"Y-m-d" }}</td>
+                <td>{{ event.time }}</td>
+                <td>
+                    <span style="display: inline-block; width: 24px; height: 24px; border-radius: 50%; background-color: {{ event.color_hex }}; border: 1px solid rgba(0,0,0,0.1);"></span>
+                </td>
+                <td>
+                    <form action="{% url 'event_delete' event.id %}" method="POST" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this event?');">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6" style="text-align: center; padding: 3rem; color: var(--text-muted);">
+                    <i class="fa-solid fa-calendar-xmark" style="font-size: 3rem; margin-bottom: 1rem; color: rgba(0,0,0,0.1);"></i>
+                    <p>No calendar events found.</p>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

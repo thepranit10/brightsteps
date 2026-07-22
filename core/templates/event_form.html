@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block page_title %}{{ action_title }} Calendar Event{% endblock %}
+
+{% block content %}
+<div class="glass" style="padding: 2rem; border-radius: var(--radius-lg); max-width: 800px;">
+    <form method="POST">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label class="form-label" for="title_en">Event Title (English)</label>
+            <input type="text" id="title_en" name="title_en" class="form-control" required placeholder="e.g., Annual Sports Day">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="title_mr">Event Title (Marathi)</label>
+            <input type="text" id="title_mr" name="title_mr" class="form-control" required placeholder="उदा. वार्षिक क्रीडा स्पर्धा">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="date">Event Date</label>
+            <input type="date" id="date" name="date" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="time">Event Time</label>
+            <input type="text" id="time" name="time" class="form-control" required placeholder="e.g., 09:00 AM to 02:00 PM">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="description_en">Description (English) (Optional)</label>
+            <textarea id="description_en" name="description_en" class="form-control" rows="3" placeholder="Additional details in English..."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="description_mr">Description (Marathi) (Optional)</label>
+            <textarea id="description_mr" name="description_mr" class="form-control" rows="3" placeholder="तपशीलवार माहिती मराठीमध्ये..."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="color_hex">Theme Color Tag (Hex)</label>
+            <input type="color" id="color_hex" name="color_hex" class="form-control" style="height: 50px; padding: 0.25rem; cursor: pointer;" value="#3B82F6">
+        </div>
+
+        <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+            <button type="submit" class="btn btn-primary">Save Event</button>
+            <a href="{% url 'event_list' %}" class="btn" style="background: rgba(0,0,0,0.05);">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

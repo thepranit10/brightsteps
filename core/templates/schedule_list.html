@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Class Schedules - BrightSteps{% endblock %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+    <h2>Class Schedules</h2>
+    <a href="{% url 'schedule_create' %}" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Add Schedule</a>
+</div>
+
+<div class="glass" style="padding: 1rem; border-radius: var(--radius-lg); overflow-x: auto;">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Day</th>
+                <th>Subject</th>
+                <th>Teacher</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for schedule in schedules %}
+            <tr>
+                <td style="font-weight: 500; color: var(--primary);">{{ schedule.day_of_week }}</td>
+                <td><span style="background: rgba(245, 158, 11, 0.2); color: var(--accent); padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600;">{{ schedule.subject }}</span></td>
+                <td>{{ schedule.teacher.name }}</td>
+                <td style="color: var(--text-muted); font-size: 0.9rem;">{{ schedule.start_time|time:"H:i" }} - {{ schedule.end_time|time:"H:i" }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" style="text-align: center; color: var(--text-muted); padding: 2rem;">No class schedules found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

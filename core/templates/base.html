@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrightSteps Admin Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar glass">
+        <div class="brand">
+            <i class="fa-solid fa-graduation-cap" style="filter: drop-shadow(0 4px 8px rgba(79, 70, 229, 0.3));"></i> Bright<span>Steps</span>
+        </div>
+        
+        <nav style="flex: 1;">
+            <ul class="nav-links">
+                <li>
+                    <a href="{% url 'dashboard_home' %}" class="nav-item {% if request.resolver_match.url_name == 'dashboard_home' %}active{% endif %}">
+                        <i class="fa-solid fa-chart-pie"></i> Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'student_list' %}" class="nav-item {% if 'student' in request.resolver_match.url_name %}active{% endif %}">
+                        <i class="fa-solid fa-user-graduate"></i> Students
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'teacher_list' %}" class="nav-item {% if 'teacher' in request.resolver_match.url_name %}active{% endif %}">
+                        <i class="fa-solid fa-chalkboard-user"></i> Teachers
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'schedule_list' %}" class="nav-item {% if 'schedule' in request.resolver_match.url_name %}active{% endif %}">
+                        <i class="fa-solid fa-calendar-days"></i> Schedule
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'attendance_list' %}" class="nav-item {% if 'attendance' in request.resolver_match.url_name %}active{% endif %}">
+                        <i class="fa-solid fa-clipboard-user"></i> Attendance
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'homework_list' %}" class="nav-item {% if 'homework' in request.resolver_match.url_name %}active{% endif %}">
+                        <i class="fa-solid fa-book"></i> Homework
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'lesson_list' %}" class="nav-item {% if 'lesson' in request.resolver_match.url_name %}active{% endif %}">
+                        <i class="fa-solid fa-graduation-cap"></i> Lessons
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'quiz_list' %}" class="nav-item {% if 'quiz' in request.resolver_match.url_name %}active{% endif %}">
+                        <i class="fa-solid fa-list-check"></i> Quizzes
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'notice_list' %}" class="nav-item {% if 'notice' in request.resolver_match.url_name %}active{% endif %}">
+                        <i class="fa-solid fa-bullhorn"></i> Notices
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'event_list' %}" class="nav-item {% if 'event_list' in request.resolver_match.url_name or 'event_create' in request.resolver_match.url_name %}active{% endif %}">
+                        <i class="fa-solid fa-calendar-day"></i> Calendar Events
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'event_photo_list' %}" class="nav-item {% if 'event_photo' in request.resolver_match.url_name %}active{% endif %}">
+                        <i class="fa-solid fa-images"></i> Event Photos
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div style="padding-top: 1rem; border-top: 1px solid var(--glass-border); display: flex; flex-direction: column; gap: 0.25rem;">
+            <a href="{% url 'home_page' %}" target="_blank" class="nav-item" style="color: var(--primary);">
+                <i class="fa-solid fa-globe"></i> View Public Site
+            </a>
+            <a href="{% url 'logout' %}" class="nav-item" style="color: var(--danger);">
+                <i class="fa-solid fa-right-from-bracket"></i> Logout
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="top-header">
+            <div>
+                <h1 class="page-title">{% block page_title %}Overview{% endblock %}</h1>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <!-- Language Switcher Pill matching Android app -->
+                <div style="background: white; color: var(--primary); padding: 0.35rem 0.85rem; border-radius: 50px; font-size: 0.82rem; font-weight: 800; border: 1px solid var(--glass-border); box-shadow: var(--shadow-soft); display: flex; align-items: center; gap: 0.3rem;">
+                    मराठी <span style="opacity: 0.45; color: #6B7280; font-weight: 500;">EN</span>
+                </div>
+
+                <!-- App Notification Bell matching Android app -->
+                <div style="background: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; position: relative; border: 1px solid var(--glass-border); box-shadow: var(--shadow-soft); cursor: pointer;">
+                    <i class="fa-solid fa-bell" style="font-size: 1rem; color: var(--primary);"></i>
+                    <span style="position: absolute; top: -2px; right: -2px; background: #F97316; color: white; border-radius: 50%; font-size: 0.65rem; width: 16px; height: 16px; display: flex; align-items: center; justify-content: center; font-weight: 800;">2</span>
+                </div>
+
+                <!-- Admin Profile Card -->
+                <div class="user-profile">
+                    <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.95rem;">
+                        ADM
+                    </div>
+                    <div>
+                        <div style="font-weight: 800; font-size: 0.92rem; line-height: 1.1; color: var(--text-main);">Admin User</div>
+                        <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 600;">School Administrator</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        {% block content %}
+        {% endblock %}
+    </main>
+
+</body>
+</html>

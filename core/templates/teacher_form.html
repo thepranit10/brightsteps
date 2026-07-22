@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}{{ action_title }} Teacher - BrightSteps{% endblock %}
+
+{% block content %}
+<div class="glass" style="padding: 2rem; border-radius: var(--radius-lg); max-width: 600px;">
+    <h2 style="margin-bottom: 1.5rem;"><i class="fa-solid fa-chalkboard-user" style="color: var(--primary);"></i> {{ action_title }} Teacher</h2>
+    
+    <form method="POST">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label class="form-label" for="name">Full Name</label>
+            <input type="text" id="name" name="name" class="form-control" required placeholder="Teacher's Full Name" value="{{ teacher.name|default:'' }}">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="email">Email Address</label>
+            <input type="email" id="email" name="email" class="form-control" required placeholder="teacher@example.com" value="{{ teacher.email|default:'' }}">
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label" for="subject_specialty">Subject Specialty</label>
+            <input type="text" id="subject_specialty" name="subject_specialty" class="form-control" required placeholder="e.g. Mathematics" value="{{ teacher.subject_specialty|default:'' }}">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="assigned_class">Assigned Class / Standard</label>
+            <select id="assigned_class" name="assigned_class" class="form-control" required>
+                {% for choice in class_choices %}
+                    <option value="{{ choice }}" {% if teacher and teacher.assigned_class == choice %}selected{% endif %}>{{ choice }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+            <button type="submit" class="btn btn-primary">Save Teacher</button>
+            <a href="{% url 'teacher_list' %}" class="btn" style="background: rgba(0,0,0,0.05);">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block page_title %}{{ action_title }} Lesson{% endblock %}
+
+{% block content %}
+<div class="glass" style="padding: 2rem; border-radius: var(--radius-lg); max-width: 800px;">
+    <form method="POST">
+        {% csrf_token %}
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+            <div class="form-group">
+                <label class="form-label" for="subject">Subject Category</label>
+                <select id="subject" name="subject" class="form-control" required style="padding: 0.75rem;">
+                    {% for sub in subjects %}
+                        <option value="{{ sub }}" {% if lesson.subject == sub %}selected{% endif %}>{{ sub }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="grade_level">Grade Level / Class</label>
+                <select id="grade_level" name="grade_level" class="form-control" required style="padding: 0.75rem;">
+                    {% for grade in grade_levels %}
+                        <option value="{{ grade }}" {% if lesson.grade_level == grade %}selected{% endif %}>{{ grade }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+            <div class="form-group">
+                <label class="form-label" for="title_en">Title (English)</label>
+                <input type="text" id="title_en" name="title_en" class="form-control" value="{{ lesson.title_en|default:'' }}" required placeholder="e.g., Number Recognition">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="title_mr">Title (Marathi)</label>
+                <input type="text" id="title_mr" name="title_mr" class="form-control" value="{{ lesson.title_mr|default:'' }}" required placeholder="e.g., अंक ओळख">
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+            <div class="form-group">
+                <label class="form-label" for="description_en">Description (English)</label>
+                <textarea id="description_en" name="description_en" class="form-control" rows="3" required placeholder="Description in English...">{{ lesson.description_en|default:'' }}</textarea>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="description_mr">Description (Marathi)</label>
+                <textarea id="description_mr" name="description_mr" class="form-control" rows="3" required placeholder="Description in Marathi...">{{ lesson.description_mr|default:'' }}</textarea>
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+            <div class="form-group">
+                <label class="form-label" for="content_en">Content (English) (Optional)</label>
+                <textarea id="content_en" name="content_en" class="form-control" rows="4" placeholder="Content in English...">{{ lesson.content_en|default:'' }}</textarea>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="content_mr">Content (Marathi) (Optional)</label>
+                <textarea id="content_mr" name="content_mr" class="form-control" rows="4" placeholder="Content in Marathi...">{{ lesson.content_mr|default:'' }}</textarea>
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+            <div class="form-group">
+                <label class="form-label" for="icon_res">Icon Name / String (Optional)</label>
+                <input type="text" id="icon_res" name="icon_res" class="form-control" value="{{ lesson.icon_res|default:'' }}" placeholder="e.g. abc, book, calculate, music, play">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="color_hex">Color Hex Code (Optional)</label>
+                <input type="text" id="color_hex" name="color_hex" class="form-control" value="{{ lesson.color_hex|default:'' }}" placeholder="e.g. #FF8A80">
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+            <button type="submit" class="btn btn-primary">Save Lesson</button>
+            <a href="{% url 'lesson_list' %}" class="btn" style="background: rgba(0,0,0,0.05);">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

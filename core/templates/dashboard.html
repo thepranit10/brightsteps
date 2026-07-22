@@ -1,0 +1,418 @@
+{% extends 'base.html' %}
+
+{% block page_title %}Platform Dashboard{% endblock %}
+
+{% block content %}
+
+<!-- App Theme Indigo Top Banner -->
+<div style="background: linear-gradient(135deg, #3F51B5 0%, #4C51C6 60%, #5C6BC0 100%); border-radius: 28px; padding: 2rem 2.5rem; color: white; margin-bottom: 2rem; box-shadow: 0 15px 35px -5px rgba(63, 81, 181, 0.35); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; position: relative; overflow: hidden;">
+    <div>
+        <div style="background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); padding: 0.35rem 1rem; border-radius: 50px; font-weight: 700; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+            <i class="fa-solid fa-graduation-cap" style="color: #FCD34D;"></i> Zilla Parishad Primary School Portal
+        </div>
+        <h2 style="font-size: 2rem; font-weight: 900; margin-bottom: 0.4rem; color: white;">Welcome back, Admin 👋</h2>
+        <div style="font-size: 0.92rem; opacity: 0.9; font-weight: 500; display: flex; align-items: center; gap: 0.75rem;">
+            <span><i class="fa-regular fa-calendar"></i> {{ today_date }}</span>
+            <span>•</span>
+            <span style="color: #34D399; font-weight: 700;"><i class="fa-solid fa-circle-check"></i> Android App & Web Portal Live</span>
+        </div>
+    </div>
+
+    <!-- Minimal Action Buttons Pill Group -->
+    <div style="display: flex; gap: 0.6rem; flex-wrap: wrap; z-index: 2;">
+        <a href="{% url 'homework_create' %}" style="background: #FFFFFF; color: #3F51B5; padding: 0.65rem 1.25rem; border-radius: 50px; text-decoration: none; font-weight: 800; font-size: 0.88rem; box-shadow: 0 8px 20px rgba(0,0,0,0.15);">
+            <i class="fa-solid fa-plus"></i> Add Homework
+        </a>
+        <a href="{% url 'student_create' %}" style="background: rgba(255,255,255,0.2); color: white; padding: 0.65rem 1.25rem; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.88rem; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3);">
+            <i class="fa-solid fa-user-plus"></i> Add Student
+        </a>
+        <a href="{% url 'teacher_create' %}" style="background: rgba(255,255,255,0.2); color: white; padding: 0.65rem 1.25rem; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.88rem; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3);">
+            <i class="fa-solid fa-chalkboard-user"></i> Add Teacher
+        </a>
+        <a href="{% url 'notice_create' %}" style="background: rgba(255,255,255,0.2); color: white; padding: 0.65rem 1.25rem; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.88rem; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3);">
+            <i class="fa-solid fa-bullhorn"></i> Add Notice
+        </a>
+    </div>
+</div>
+
+<!-- Metrics Overview Grid -->
+<div class="stats-grid">
+    <!-- Total Students -->
+    <div class="stat-card glass" style="border-left: 5px solid var(--primary);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div>
+                <div class="stat-label">Total Students</div>
+                <div class="stat-value" style="color: var(--primary);">{{ total_students }}</div>
+            </div>
+            <div style="background: rgba(79, 70, 229, 0.12); padding: 0.85rem; border-radius: var(--radius-md); color: var(--primary);">
+                <i class="fa-solid fa-user-graduate" style="font-size: 1.6rem;"></i>
+            </div>
+        </div>
+        <div style="font-size: 0.85rem; color: var(--success); font-weight: 600; margin-top: 0.5rem;">
+            <i class="fa-solid fa-arrow-trend-up"></i> Active student enrollment
+        </div>
+    </div>
+    
+    <!-- Total Teachers -->
+    <div class="stat-card glass" style="border-left: 5px solid var(--purple);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div>
+                <div class="stat-label">Total Teachers</div>
+                <div class="stat-value" style="color: var(--purple);">{{ total_teachers }}</div>
+            </div>
+            <div style="background: rgba(139, 92, 246, 0.12); padding: 0.85rem; border-radius: var(--radius-md); color: var(--purple);">
+                <i class="fa-solid fa-chalkboard-user" style="font-size: 1.6rem;"></i>
+            </div>
+        </div>
+        <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600; margin-top: 0.5rem;">
+            Class-assigned educators
+        </div>
+    </div>
+
+    <!-- Active Subjects -->
+    <div class="stat-card glass" style="border-left: 5px solid var(--accent);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div>
+                <div class="stat-label">Subjects & Topics</div>
+                <div class="stat-value" style="color: var(--accent);">{{ subjects_count }}</div>
+            </div>
+            <div style="background: rgba(245, 158, 11, 0.12); padding: 0.85rem; border-radius: var(--radius-md); color: var(--accent);">
+                <i class="fa-solid fa-book-open" style="font-size: 1.6rem;"></i>
+            </div>
+        </div>
+        <div style="font-size: 0.85rem; color: var(--success); font-weight: 600; margin-top: 0.5rem;">
+            Curriculum active
+        </div>
+    </div>
+
+    <!-- Homework Assigned -->
+    <div class="stat-card glass" style="border-left: 5px solid var(--success);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div>
+                <div class="stat-label">Homework Tasks</div>
+                <div class="stat-value" style="color: var(--success);">{{ total_homework }}</div>
+            </div>
+            <div style="background: rgba(16, 185, 129, 0.12); padding: 0.85rem; border-radius: var(--radius-md); color: var(--success);">
+                <i class="fa-solid fa-clipboard-check" style="font-size: 1.6rem;"></i>
+            </div>
+        </div>
+        <div style="font-size: 0.85rem; color: var(--primary); font-weight: 600; margin-top: 0.5rem;">
+            Assigned across classes
+        </div>
+    </div>
+
+    <!-- Total Lessons -->
+    <div class="stat-card glass" style="border-left: 5px solid var(--info);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div>
+                <div class="stat-label">Lessons & Modules</div>
+                <div class="stat-value" style="color: var(--info);">{{ total_lessons }}</div>
+            </div>
+            <div style="background: rgba(6, 182, 212, 0.12); padding: 0.85rem; border-radius: var(--radius-md); color: var(--info);">
+                <i class="fa-solid fa-graduation-cap" style="font-size: 1.6rem;"></i>
+            </div>
+        </div>
+        <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600; margin-top: 0.5rem;">
+            Bilingual learning modules
+        </div>
+    </div>
+
+    <!-- Total Quizzes -->
+    <div class="stat-card glass" style="border-left: 5px solid var(--danger);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div>
+                <div class="stat-label">Quiz Questions</div>
+                <div class="stat-value" style="color: var(--danger);">{{ total_quizzes }}</div>
+            </div>
+            <div style="background: rgba(239, 68, 68, 0.12); padding: 0.85rem; border-radius: var(--radius-md); color: var(--danger);">
+                <i class="fa-solid fa-list-check" style="font-size: 1.6rem;"></i>
+            </div>
+        </div>
+        <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600; margin-top: 0.5rem;">
+            Interactive assessments
+        </div>
+    </div>
+</div>
+
+<!-- Class Standards Management Overview -->
+<div class="glass" style="padding: 1.75rem; border-radius: var(--radius-lg); margin-bottom: 2rem;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+        <div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.2rem;">
+                <i class="fa-solid fa-school" style="color: var(--primary);"></i> Class Standards Overview
+            </h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); font-weight: 500;">
+                Assigned teachers and student enrollment by standard
+            </p>
+        </div>
+        <a href="{% url 'student_list' %}" class="btn btn-sm" style="background: rgba(79, 70, 229, 0.1); color: var(--primary);">
+            <i class="fa-solid fa-sliders"></i> Filter Students
+        </a>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;">
+        {% for c in class_breakdown %}
+        <div style="background: white; padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--glass-border); display: flex; flex-direction: column; gap: 0.75rem; box-shadow: var(--shadow-soft);">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-weight: 800; font-size: 1.1rem; color: var(--primary);">{{ c.name }}</span>
+                <span style="background: rgba(79, 70, 229, 0.1); color: var(--primary); padding: 0.2rem 0.75rem; border-radius: 50px; font-size: 0.8rem; font-weight: 700;">
+                    {{ c.students }} Students
+                </span>
+            </div>
+            <div style="font-size: 0.85rem; color: var(--text-muted);">
+                <i class="fa-solid fa-chalkboard-user" style="color: var(--purple); margin-right: 0.3rem;"></i>
+                <strong style="color: var(--text-main);">Teacher:</strong> {{ c.teachers }}
+            </div>
+            <a href="{% url 'student_list' %}?grade={{ c.name }}" style="font-size: 0.85rem; font-weight: 700; color: var(--primary); text-decoration: none; margin-top: 0.25rem;">
+                Manage {{ c.name }} Students <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Two-Column Chart Layout -->
+<div style="display: flex; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap;">
+    
+    <!-- Left Column: Academic Progression Line Chart -->
+    <div class="glass" style="flex: 2; min-width: 380px; padding: 1.75rem; border-radius: var(--radius-lg);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+            <div>
+                <h3 style="color: var(--text-main); font-weight: 800; margin-bottom: 0.2rem;">Academic Activity & Progression</h3>
+                <p style="font-size: 0.85rem; color: var(--text-muted);">Weekly learning engagement metrics</p>
+            </div>
+            <span style="background: rgba(16, 185, 129, 0.1); color: var(--success); font-size: 0.85rem; font-weight: 700; padding: 0.35rem 0.85rem; border-radius: 50px;">
+                Average Score: 92%
+            </span>
+        </div>
+        
+        <!-- SVG Line Chart representing Grade Progression -->
+        <div style="background: rgba(255,255,255,0.5); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--glass-border);">
+            <svg viewBox="0 0 500 200" style="width: 100%; height: 200px;">
+                <!-- Background Grid lines -->
+                <line x1="40" y1="20" x2="480" y2="20" stroke="rgba(0,0,0,0.04)" stroke-dasharray="4" />
+                <line x1="40" y1="70" x2="480" y2="70" stroke="rgba(0,0,0,0.04)" stroke-dasharray="4" />
+                <line x1="40" y1="120" x2="480" y2="120" stroke="rgba(0,0,0,0.04)" stroke-dasharray="4" />
+                <line x1="40" y1="170" x2="480" y2="170" stroke="rgba(0,0,0,0.08)" />
+                
+                <!-- Smooth Area path under curve -->
+                <path d="M 40 170 Q 120 100 200 120 T 350 60 T 480 40 L 480 170 Z" fill="url(#chart-gradient)" opacity="0.18" />
+                
+                <!-- Smooth Line path -->
+                <path d="M 40 170 Q 120 100 200 120 T 350 60 T 480 40" fill="none" stroke="var(--primary)" stroke-width="4" stroke-linecap="round" />
+                
+                <!-- Interactive Dots -->
+                <circle cx="40" cy="170" r="6" fill="var(--primary)" stroke="white" stroke-width="2" />
+                <circle cx="140" cy="108" r="6" fill="var(--primary)" stroke="white" stroke-width="2" />
+                <circle cx="240" cy="100" r="6" fill="var(--primary)" stroke="white" stroke-width="2" />
+                <circle cx="340" cy="62" r="6" fill="var(--primary)" stroke="white" stroke-width="2" />
+                <circle cx="480" cy="40" r="6" fill="var(--primary)" stroke="white" stroke-width="2" />
+                
+                <!-- Chart Defs -->
+                <defs>
+                    <linearGradient id="chart-gradient" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="var(--primary)" />
+                        <stop offset="100%" stop-color="transparent" />
+                    </linearGradient>
+                </defs>
+            </svg>
+            <div style="display: flex; justify-content: space-between; padding: 0.5rem 1rem 0; font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">
+                <span>Week 1</span>
+                <span>Week 2</span>
+                <span>Week 3</span>
+                <span>Week 4</span>
+                <span>Week 5 (Current)</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Right Column: Attendance Doughnut Chart -->
+    <div class="glass" style="flex: 1; min-width: 280px; padding: 1.75rem; border-radius: var(--radius-lg); display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+            <h3 style="color: var(--text-main); font-weight: 800; margin-bottom: 0.2rem;">Attendance Rate</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Overall student attendance ratio</p>
+        </div>
+        
+        <div style="position: relative; width: 150px; height: 150px; margin: 1.5rem auto;">
+            <svg viewBox="0 0 36 36" style="width: 150px; height: 150px; transform: rotate(-90deg);">
+                <circle cx="18" cy="18" r="15.915" fill="none" stroke="#E2E8F0" stroke-width="3" />
+                <circle cx="18" cy="18" r="15.915" fill="none" stroke="var(--success)" stroke-width="3"
+                        stroke-dasharray="88 12" stroke-dashoffset="0" stroke-linecap="round" />
+            </svg>
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+                <div style="font-size: 1.8rem; font-weight: 800; color: var(--text-main);">88%</div>
+                <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">Present</div>
+            </div>
+        </div>
+        
+        <div style="background: rgba(16, 185, 129, 0.08); padding: 0.75rem 1rem; border-radius: var(--radius-md); text-align: center; font-size: 0.85rem; color: var(--success); font-weight: 600;">
+            <i class="fa-solid fa-circle-check"></i> Classroom attendance is optimal
+        </div>
+    </div>
+
+</div>
+
+<!-- Recent Homework & Recent Enrolled Students -->
+<div style="display: flex; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap;">
+
+    <!-- Recent Homework Tasks -->
+    <div class="glass" style="flex: 1; min-width: 350px; padding: 1.75rem; border-radius: var(--radius-lg);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+            <h3 style="color: var(--text-main); font-weight: 800; margin: 0;">Recent Homework</h3>
+            <a href="{% url 'homework_list' %}" style="color: var(--primary); font-size: 0.85rem; font-weight: 700; text-decoration: none;">
+                View All <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <table style="width: 100%;">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Subject</th>
+                    <th>Due Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for hw in recent_homework %}
+                <tr>
+                    <td style="font-weight: 600; color: var(--text-main);">{{ hw.title }}</td>
+                    <td>
+                        <span style="background: rgba(79, 70, 229, 0.1); color: var(--primary); padding: 0.2rem 0.6rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700;">
+                            {{ hw.subject }}
+                        </span>
+                    </td>
+                    <td style="font-size: 0.85rem; color: var(--text-muted);">{{ hw.due_date }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3" style="text-align: center; color: var(--text-muted); padding: 1.5rem;">No recent homework added.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Recent Enrolled Students -->
+    <div class="glass" style="flex: 1; min-width: 350px; padding: 1.75rem; border-radius: var(--radius-lg);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+            <h3 style="color: var(--text-main); font-weight: 800; margin: 0;">Recently Enrolled Students</h3>
+            <a href="{% url 'student_list' %}" style="color: var(--primary); font-size: 0.85rem; font-weight: 700; text-decoration: none;">
+                View All <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <table style="width: 100%;">
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Roll No</th>
+                    <th>Class</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in recent_students %}
+                <tr>
+                    <td style="font-weight: 600; color: var(--text-main);">{{ student.name }}</td>
+                    <td style="font-size: 0.85rem; color: var(--text-muted);">{{ student.roll_number }}</td>
+                    <td>
+                        <span style="background: rgba(245, 158, 11, 0.15); color: var(--accent); padding: 0.2rem 0.6rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700;">
+                            {{ student.grade_level }}
+                        </span>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3" style="text-align: center; color: var(--text-muted); padding: 1.5rem;">No recent students added.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<!-- School Notices & Upcoming Events -->
+<div style="display: flex; gap: 2rem; flex-wrap: wrap;">
+    
+    <!-- Left Column: School Notices -->
+    <div class="glass" style="flex: 1; min-width: 350px; padding: 1.75rem; border-radius: var(--radius-lg);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+            <h3 style="color: var(--text-main); font-weight: 800; margin: 0;">Notices & Announcements</h3>
+            <div style="display: flex; gap: 0.75rem; align-items: center;">
+                <a href="{% url 'notice_list' %}" style="color: var(--primary); font-size: 0.85rem; font-weight: 700; text-decoration: none;">
+                    View All
+                </a>
+                <span style="color: rgba(0,0,0,0.15); font-size: 0.8rem;">|</span>
+                <a href="{% url 'notice_create' %}" style="color: var(--primary); font-size: 0.85rem; font-weight: 700; text-decoration: none;">
+                    <i class="fa-solid fa-plus-circle"></i> Add Notice
+                </a>
+            </div>
+        </div>
+        
+        <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+            {% for notice in notices %}
+            <div style="background: white; padding: 1rem 1.15rem; border-radius: var(--radius-md); border: 1px solid var(--glass-border); display: flex; flex-direction: column; gap: 0.3rem;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem;">
+                    <span style="font-weight: 700; color: var(--text-main); font-size: 0.95rem;">
+                        {{ notice.title_en }} 
+                        {% if notice.is_urgent %}
+                        <span style="background: rgba(239, 68, 68, 0.15); color: var(--danger); font-size: 0.75rem; padding: 0.15rem 0.5rem; border-radius: 50px; font-weight: 700; margin-left: 0.4rem;">URGENT</span>
+                        {% endif %}
+                    </span>
+                    <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600; white-space: nowrap;">{{ notice.date|date:"d M Y" }}</span>
+                </div>
+                <div style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.4;">{{ notice.content_en }}</div>
+                <div style="font-size: 0.75rem; color: var(--primary); font-weight: 600; margin-top: 0.25rem;">By: {{ notice.author_name }}</div>
+            </div>
+            {% empty %}
+            <div style="text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.9rem;">
+                <i class="fa-solid fa-envelope-open" style="font-size: 2rem; color: rgba(0,0,0,0.05); margin-bottom: 0.5rem;"></i>
+                <p style="margin: 0;">No active notices.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Right Column: Upcoming Events -->
+    <div class="glass" style="flex: 1; min-width: 350px; padding: 1.75rem; border-radius: var(--radius-lg);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+            <h3 style="color: var(--text-main); font-weight: 800; margin: 0;">Calendar Events</h3>
+            <div style="display: flex; gap: 0.75rem; align-items: center;">
+                <a href="{% url 'event_list' %}" style="color: var(--success); font-size: 0.85rem; font-weight: 700; text-decoration: none;">
+                    View All
+                </a>
+                <span style="color: rgba(0,0,0,0.15); font-size: 0.8rem;">|</span>
+                <a href="{% url 'event_create' %}" style="color: var(--success); font-size: 0.85rem; font-weight: 700; text-decoration: none;">
+                    <i class="fa-solid fa-plus-circle"></i> Add Event
+                </a>
+            </div>
+        </div>
+        
+        <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+            {% for event in upcoming_events %}
+            <div style="display: flex; align-items: center; justify-content: space-between; background: white; padding: 1rem 1.15rem; border-radius: var(--radius-md); border: 1px solid var(--glass-border); gap: 1rem;">
+                <div style="display: flex; align-items: center; gap: 1rem; flex: 1;">
+                    <!-- Date badge -->
+                    <div style="background: {{ event.color_hex }}15; color: {{ event.color_hex }}; padding: 0.5rem 0.75rem; border-radius: 12px; text-align: center; min-width: 50px;">
+                        <div style="font-weight: 800; font-size: 1.1rem; line-height: 1;">{{ event.date|date:"d" }}</div>
+                        <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase;">{{ event.date|date:"M" }}</div>
+                    </div>
+                    <div>
+                        <div style="font-weight: 700; color: var(--text-main); font-size: 0.95rem;">{{ event.title_en }}</div>
+                        <div style="font-size: 0.8rem; color: var(--text-muted);"><i class="fa-regular fa-clock"></i> {{ event.time }}</div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div style="text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.9rem;">
+                <i class="fa-solid fa-calendar-xmark" style="font-size: 2rem; color: rgba(0,0,0,0.05); margin-bottom: 0.5rem;"></i>
+                <p style="margin: 0;">No upcoming events scheduled.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+

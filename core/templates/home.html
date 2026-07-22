@@ -1,0 +1,1080 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrightSteps - Zilla Parishad Primary School Portal</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
+
+        * {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: block;
+            background: #FAFAFC;
+            background-image: radial-gradient(circle at 50% -10%, rgba(236, 72, 153, 0.12) 0%, rgba(79, 70, 229, 0.08) 40%, transparent 70%);
+            color: #111827;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        @keyframes smoothVerticalFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
+
+        @keyframes smoothVerticalFloatAlt {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes badgeFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+        }
+
+        /* Envato-Style Split Mobile App Presentation Stage */
+        .showcase-box {
+            background: #FFFFFF;
+            border-radius: 36px;
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 25px 70px rgba(15, 23, 42, 0.08);
+            display: grid;
+            grid-template-columns: 0.95fr 1.2fr;
+            overflow: hidden;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .envato-stage-left {
+            background: linear-gradient(135deg, #1B1E5C 0%, #121442 100%);
+            color: #FFFFFF;
+            padding: 4.5rem 3.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            text-align: left;
+        }
+
+        .envato-app-icon {
+            width: 58px;
+            height: 58px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            color: #00E6A8;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .envato-stage-title {
+            font-size: 2.8rem;
+            font-weight: 900;
+            line-height: 1.15;
+            letter-spacing: -1px;
+            margin: 0 0 1.25rem 0;
+            color: #FFFFFF;
+        }
+
+        .envato-stage-subtitle {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.78);
+            line-height: 1.65;
+            margin: 0 0 2.25rem 0;
+            max-width: 440px;
+        }
+
+        .envato-chip {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #FFFFFF;
+            padding: 0.5rem 1.1rem;
+            border-radius: 50px;
+            font-size: 0.82rem;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+        }
+
+        .envato-year-badge {
+            position: absolute;
+            top: 2.5rem;
+            right: 2.5rem;
+            font-weight: 900;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.35);
+            letter-spacing: 1.5px;
+        }
+
+        .envato-stage-right {
+            background: linear-gradient(135deg, #F8FAFC 0%, #EFF6FF 100%);
+            padding: 3.5rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Concentric Circles Aura Behind Phone Mockup */
+        .concentric-aura-container {
+            position: absolute;
+            width: 520px;
+            height: 520px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+
+        .concentric-ring-1 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: rgba(0, 230, 168, 0.08);
+        }
+
+        .concentric-ring-2 {
+            position: absolute;
+            width: 380px;
+            height: 380px;
+            border-radius: 50%;
+            background: rgba(0, 230, 168, 0.15);
+        }
+
+        .concentric-ring-3 {
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            background: rgba(0, 230, 168, 0.24);
+        }
+
+        /* Decorative Floating Orbs */
+        .envato-dot-teal-1 {
+            width: 16px;
+            height: 16px;
+            background: #00E6A8;
+            border-radius: 50%;
+            position: absolute;
+            top: 3.5rem;
+            left: 18%;
+            box-shadow: 0 0 15px #00E6A8;
+        }
+
+        .envato-dot-blue-1 {
+            width: 14px;
+            height: 14px;
+            background: #0052FF;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 4rem;
+            left: 28%;
+            box-shadow: 0 0 12px #0052FF;
+        }
+
+        .envato-dot-teal-2 {
+            width: 14px;
+            height: 14px;
+            background: #00E6A8;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 6rem;
+            right: 12%;
+            box-shadow: 0 0 12px #00E6A8;
+        }
+
+        .phone-frame-mockup {
+            width: 270px;
+            height: 530px;
+            display: flex;
+            flex-direction: column;
+            border-radius: 40px;
+            border: 9px solid #0F172A;
+            background: #FAFAFC;
+            text-align: left;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 25px 65px -10px rgba(15, 23, 42, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.2);
+            margin: 0;
+            flex-shrink: 0;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
+        }
+
+        .phone-frame-mockup:hover {
+            transform: translateY(-8px) !important;
+            box-shadow: 0 35px 80px -10px rgba(0, 230, 168, 0.35) !important;
+        }
+
+        .phone-float-left {
+            animation: smoothVerticalFloat 4.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+
+        .phone-float-right {
+            animation: smoothVerticalFloatAlt 4.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            animation-delay: -2.4s;
+        }
+
+        .floating-glass-badge {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            color: #0F172A;
+            padding: 0.65rem 1.35rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            box-shadow: 0 14px 35px rgba(0, 0, 0, 0.28);
+            position: absolute;
+            z-index: 20;
+            animation: badgeFloat 4s ease-in-out infinite;
+            white-space: nowrap;
+        }
+
+        /* Clean Top Navigation Header */
+        .navbar-clean {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid #E5E7EB;
+            padding: 1rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-weight: 900;
+            font-size: 1.35rem;
+            color: #111827;
+            text-decoration: none;
+        }
+
+        .brand-logo span {
+            color: #EC4899;
+        }
+
+        .nav-links-center {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-link-item {
+            text-decoration: none;
+            color: #4B5563;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link-item:hover, .nav-link-item.active {
+            color: #111827;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3.5rem 1.5rem;
+        }
+
+        /* Hero Section matching the Redesign concept image */
+        .hero-header-centered {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .eyebrow-text {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: #6B7280;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.75rem;
+        }
+
+        .main-hero-headline {
+            font-size: 3.8rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin: 0 0 1rem 0;
+            letter-spacing: -1.5px;
+            color: #111827;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #3F51B5 0%, #EC4899 50%, #8B5CF6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle-centered {
+            font-size: 1.15rem;
+            color: #4B5563;
+            max-width: 650px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        /* Sub-Section Headline */
+        .section-headline-centered {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-headline-centered h2 {
+            font-size: 2.4rem;
+            font-weight: 900;
+            color: #111827;
+            margin: 0 0 0.5rem 0;
+            letter-spacing: -1px;
+        }
+
+        .section-headline-centered p {
+            color: #6B7280;
+            font-size: 1.05rem;
+            margin: 0;
+        }
+
+        /* Feature Cards Grid */
+        .feature-grid-clean {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .feature-card-clean {
+            background: #FFFFFF;
+            border-radius: 28px;
+            padding: 2.25rem;
+            border: 1px solid #E5E7EB;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .feature-card-clean:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 45px rgba(63, 81, 181, 0.12);
+            border-color: rgba(63, 81, 181, 0.3);
+        }
+
+        /* Contact Section */
+        .contact-card-clean {
+            background: #FFFFFF;
+            border-radius: 28px;
+            padding: 2.25rem;
+            border: 1px solid #E5E7EB;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+            transition: all 0.35s ease;
+        }
+
+        .contact-card-clean:hover {
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+            border-color: #D1D5DB;
+        }
+
+        input:focus, textarea:focus {
+            outline: none !important;
+            border-color: #3F51B5 !important;
+            box-shadow: 0 0 0 4px rgba(63, 81, 181, 0.14) !important;
+        }
+
+        .btn-pink-pill {
+            background: linear-gradient(135deg, #3F51B5 0%, #4C51C6 100%);
+            color: #FFFFFF;
+            border: none;
+            border-radius: 50px;
+            padding: 0.95rem 2rem;
+            font-weight: 800;
+            font-size: 1rem;
+            width: 100%;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(63, 81, 181, 0.3);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+        }
+
+        .btn-pink-pill:hover {
+            background: linear-gradient(135deg, #303F9F 0%, #3F51B5 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 14px 30px rgba(63, 81, 181, 0.4);
+        }
+
+        /* Hide scrollbars inside phone mockup screens */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none !important;
+            width: 0 !important;
+            height: 0 !important;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none !important;
+            scrollbar-width: none !important;
+        }
+
+        /* Footer */
+        .footer-clean {
+            background: #111827;
+            color: #FFFFFF;
+            padding: 3.5rem 3rem 2rem;
+            margin-top: 5rem;
+        }
+
+        /* Mobile View Rules matching reference image */
+        @media (max-width: 768px) {
+            .navbar-clean {
+                padding: 1rem 1.25rem;
+                flex-wrap: wrap;
+                gap: 0.75rem;
+            }
+            .nav-links-center {
+                gap: 1.25rem;
+            }
+            .main-hero-headline {
+                font-size: 2.4rem;
+            }
+            .showcase-box {
+                padding: 4rem 1rem 3rem;
+            }
+            .phone-frame-mockup {
+                width: 280px;
+                height: 540px;
+            }
+            .floating-glass-badge {
+                position: relative !important;
+                top: auto !important;
+                bottom: auto !important;
+                left: auto !important;
+                right: auto !important;
+                transform: none !important;
+                margin: 0.35rem;
+                display: inline-flex;
+            }
+            .container {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Clean Navigation Header matching redesign image -->
+    <header class="navbar-clean">
+        <a href="#home" class="brand-logo">
+            <i class="fa-solid fa-graduation-cap" style="color: #EC4899;"></i> Bright<span>Steps</span>
+        </a>
+
+        <ul class="nav-links-center">
+            <li><a href="#home" class="nav-link-item active">Home</a></li>
+            <li><a href="#contact" class="nav-link-item">Contact</a></li>
+        </ul>
+
+        <div>
+            {% if user.is_authenticated %}
+                <a href="{% url 'dashboard_home' %}" style="background: #111827; color: white; padding: 0.6rem 1.4rem; border-radius: 50px; text-decoration: none; font-weight: 800; font-size: 0.9rem;">
+                    <i class="fa-solid fa-gauge"></i> Admin Dashboard
+                </a>
+            {% else %}
+                <a href="{% url 'login' %}" style="background: #EC4899; color: white; padding: 0.6rem 1.4rem; border-radius: 50px; text-decoration: none; font-weight: 800; font-size: 0.9rem; box-shadow: 0 6px 18px rgba(236, 72, 153, 0.3);">
+                    <i class="fa-solid fa-right-to-bracket"></i> Portal Login
+                </a>
+            {% endif %}
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- Centered Hero Header matching CREATE. EARN. reference image -->
+        <div class="hero-header-centered" id="home">
+            <div style="background: rgba(63, 81, 181, 0.08); color: #3F51B5; border: 1px solid rgba(63, 81, 181, 0.18); padding: 0.45rem 1.25rem; border-radius: 50px; font-weight: 800; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 1.25rem; box-shadow: 0 4px 12px rgba(63,81,181,0.06);">
+                <span style="width: 8px; height: 8px; border-radius: 50%; background: #10B981; display: inline-block; box-shadow: 0 0 8px #10B981;"></span> 
+                जिल्हा परिषद प्राथमिक शाळा • SMART DIGITAL PORTAL
+            </div>
+            
+            <h1 class="main-hero-headline" style="font-size: 4rem; letter-spacing: -2px;">
+                <span class="gradient-text">BRIGHT STEPS.</span> SMART LEARNING.
+            </h1>
+            
+            <p class="hero-subtitle-centered" style="font-size: 1.2rem; color: #4B5563; max-width: 680px; margin: 0 auto 2.25rem;">
+                Empowering Zilla Parishad primary students with interactive bilingual Marathi & English learning modules, attendance tracking, and star reward badges.
+            </p>
+            
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2.5rem;">
+                <a href="{% url 'login' %}" style="background: #3F51B5; color: white; padding: 0.95rem 2.25rem; border-radius: 50px; font-weight: 800; font-size: 1.05rem; text-decoration: none; box-shadow: 0 12px 28px rgba(63, 81, 181, 0.35); transition: all 0.3s ease;">
+                    <i class="fa-solid fa-right-to-bracket"></i> Sign In to Portal
+                </a>
+                <a href="#contact" style="background: white; color: #111827; border: 1.5px solid #E5E7EB; padding: 0.95rem 2.25rem; border-radius: 50px; font-weight: 800; font-size: 1.05rem; text-decoration: none; box-shadow: 0 4px 15px rgba(0,0,0,0.04); transition: all 0.3s ease;">
+                    <i class="fa-solid fa-envelope"></i> Contact Us
+                </a>
+            </div>
+
+            <!-- Hero Stats Bar -->
+            <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 3rem; color: #6B7280; font-size: 0.9rem; font-weight: 700;">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <i class="fa-solid fa-user-graduate" style="color: #3F51B5;"></i> 500+ Active Students
+                </div>
+                <span>•</span>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <i class="fa-solid fa-star" style="color: #F59E0B;"></i> 370 Stars Average
+                </div>
+                <span>•</span>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <i class="fa-solid fa-circle-check" style="color: #10B981;"></i> 87% Attendance Rate
+                </div>
+            </div>
+        </div>
+
+        <!-- Envato-Style Split Mobile App Presentation Stage -->
+        <div class="showcase-box">
+            
+            <!-- Left Panel: Dark Navy Presentation Canvas -->
+            <div class="envato-stage-left">
+                <!-- Floating Decorative Orbs -->
+                <div class="envato-dot-teal-1"></div>
+                <div class="envato-dot-blue-1"></div>
+                <div class="envato-year-badge">2026</div>
+
+                <div class="envato-app-icon">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+
+                <h2 class="envato-stage-title">
+                    MOBILE APP<br><span style="color: #00E6A8;">Presentation</span>
+                </h2>
+
+                <p class="envato-stage-subtitle">
+                    Smart digital education platform for Zilla Parishad primary students. Empowering learning with bilingual Marathi & English modules, attendance tracking, and star reward badges.
+                </p>
+
+                <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                    <span class="envato-chip"><i class="fa-solid fa-star" style="color: #F59E0B;"></i> 370 Stars</span>
+                    <span class="envato-chip"><i class="fa-solid fa-circle-check" style="color: #10B981;"></i> 87% Attendance</span>
+                    <span class="envato-chip"><i class="fa-solid fa-book-open" style="color: #EC4899;"></i> Bilingual</span>
+                </div>
+            </div>
+
+            <!-- Right Panel: Light Canvas with Concentric Teal Circles Aura & Dual Android Mockups -->
+            <div class="envato-stage-right">
+                <!-- Concentric Teal Circles Aura -->
+                <div class="concentric-aura-container">
+                    <div class="concentric-ring-1"></div>
+                    <div class="concentric-ring-2"></div>
+                    <div class="concentric-ring-3"></div>
+                </div>
+
+                <div class="envato-dot-teal-2"></div>
+
+                <div style="display: flex; gap: 1.25rem; justify-content: center; align-items: center; flex-wrap: nowrap; max-width: 100%; position: relative; z-index: 10;">
+                    
+                    <!-- Phone 1: Home Screen (मुख्य) -->
+                    <div class="phone-frame-mockup phone-float-left">
+                        
+                        <!-- Android Camera Hole Punch Dot -->
+                        <div style="width: 14px; height: 14px; background: #000000; border-radius: 50%; position: absolute; left: 50%; transform: translateX(-50%); top: 10px; z-index: 999; border: 1px solid rgba(255,255,255,0.15);"></div>
+
+                        <!-- Top Phone Status Bar -->
+                        <div style="background: #3F51B5; color: white; padding: 0.65rem 1.4rem 0.25rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.72rem; font-weight: 700; position: relative;">
+                            <span>9:41</span>
+                        <div style="display: flex; gap: 0.35rem; align-items: center; font-size: 0.68rem;">
+                            <span>5G</span>
+                            <i class="fa-solid fa-battery-full"></i>
+                        </div>
+                    </div>
+
+                    <!-- Scrollable Content Container for Phone 1 -->
+                    <div class="no-scrollbar" style="flex: 1; overflow-y: auto;">
+                        <!-- Header Section: Indigo Gradient with Logo & Student Greeting -->
+                        <div style="background: linear-gradient(180deg, #3F51B5 0%, #4C51C6 100%); color: white; padding: 1.25rem 1.25rem 2.25rem; border-bottom-left-radius: 26px; border-bottom-right-radius: 26px;">
+                            <!-- Logo Row -->
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+                                <div>
+                                    <div style="font-weight: 900; font-size: 1.2rem; letter-spacing: -0.5px; line-height: 1;">
+                                        Bright<span style="color: #F59E0B; font-weight: 400;">Steps</span>
+                                    </div>
+                                    <div style="font-size: 0.68rem; opacity: 0.9; font-weight: 500; margin-top: 0.2rem;">
+                                        <i class="fa-solid fa-graduation-cap"></i> जिल्हा परिषद प्राथमिक शाळा
+                                    </div>
+                                </div>
+
+                                <div style="display: flex; gap: 0.5rem; align-items: center;">
+                                    <div style="background: white; color: #3F51B5; padding: 0.2rem 0.55rem; border-radius: 50px; font-size: 0.72rem; font-weight: 800; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+                                        मराठी <span style="opacity: 0.45; color: #6B7280; font-weight: 500;">EN</span>
+                                    </div>
+                                    <div style="background: rgba(255,255,255,0.25); width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; position: relative;">
+                                        <i class="fa-solid fa-bell" style="font-size: 0.8rem;"></i>
+                                        <span style="position: absolute; top: -2px; right: -2px; background: #F97316; color: white; border-radius: 50%; font-size: 0.6rem; width: 14px; height: 14px; display: flex; align-items: center; justify-content: center; font-weight: 800;">2</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Student Greeting Row -->
+                            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                <div style="width: 42px; height: 42px; border-radius: 50%; background: rgba(255,255,255,0.3); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.05rem; border: 2px solid rgba(255,255,255,0.6);">
+                                    A
+                                </div>
+                                <div>
+                                    <div style="font-weight: 800; font-size: 1rem;">नमस्कार, Aarav Patil!</div>
+                                    <div style="background: rgba(255,255,255,0.2); padding: 0.15rem 0.55rem; border-radius: 6px; font-size: 0.68rem; font-weight: 600; display: inline-block; margin-top: 0.15rem;">
+                                        इयत्ता १ ली (१-अ)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Floating White Stats Card (3 Columns: Stars, Attendance, Lessons) -->
+                        <div style="background: white; border-radius: 20px; margin: -1.5rem 1rem 0.85rem; padding: 0.85rem 0.5rem; display: flex; justify-content: space-around; align-items: center; box-shadow: 0 10px 25px rgba(0,0,0,0.06); text-align: center;">
+                            <div>
+                                <div style="background: #FFFBEB; width: 34px; height: 34px; border-radius: 50%; color: #F59E0B; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.2rem; font-size: 0.95rem;">
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <div style="font-weight: 800; font-size: 1.05rem; color: #111827;">370</div>
+                                <div style="font-size: 0.63rem; color: #6B7280; font-weight: 700;">एकूण तारे</div>
+                            </div>
+                            
+                            <div style="width: 1px; height: 34px; background: #E5E7EB;"></div>
+
+                            <div>
+                                <div style="width: 34px; height: 34px; border-radius: 50%; border: 3px solid #10B981; color: #10B981; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.2rem; font-weight: 800; font-size: 0.68rem;">
+                                    87%
+                                </div>
+                                <div style="font-weight: 800; font-size: 1.05rem; color: #111827;">87%</div>
+                                <div style="font-size: 0.63rem; color: #6B7280; font-weight: 700;">उपस्थिती</div>
+                            </div>
+
+                            <div style="width: 1px; height: 34px; background: #E5E7EB;"></div>
+
+                            <div>
+                                <div style="background: #EEF2FF; width: 34px; height: 34px; border-radius: 50%; color: #4F46E5; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.2rem; font-size: 0.95rem;">
+                                    <i class="fa-solid fa-book-open"></i>
+                                </div>
+                                <div style="font-weight: 800; font-size: 1.05rem; color: #111827;">23</div>
+                                <div style="font-size: 0.63rem; color: #6B7280; font-weight: 700;">पूर्ण धडे</div>
+                            </div>
+                        </div>
+
+                        <!-- School Events Section Header -->
+                        <div style="padding: 0 1rem; margin-bottom: 0.4rem; display: flex; justify-content: space-between; align-items: center;">
+                            <div style="font-weight: 800; font-size: 0.82rem; color: #111827;">शाळेतील कार्यक्रम</div>
+                            <div style="font-size: 0.68rem; color: #3F51B5; font-weight: 700;">सर्व पहा</div>
+                        </div>
+
+                        <!-- Event Banner (Marathi Letter "अ") -->
+                        <div style="margin: 0 1rem 0.75rem; background: linear-gradient(135deg, #FEF3C7 0%, #FDE047 100%); border-radius: 18px; height: 105px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
+                            <span style="font-size: 4.8rem; font-weight: 900; color: #D97706; opacity: 0.85;">अ</span>
+                            <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(0deg, rgba(0,0,0,0.75) 0%, transparent 100%); padding: 0.5rem 0.85rem; color: white; font-size: 0.72rem; font-weight: 700;">
+                                शालेय वार्षिक स्नेहसंमेलन २०२६ 🎨
+                            </div>
+                        </div>
+
+                        <!-- Today's Learning Gradient Card -->
+                        <div style="margin: 0 1rem 0.75rem; background: linear-gradient(135deg, #EC4899 0%, #D946EF 100%); border-radius: 18px; padding: 0.8rem 1rem; color: white; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 6px 16px rgba(236,72,153,0.25);">
+                            <div>
+                                <div style="font-weight: 800; font-size: 0.88rem;">आजचे शिक्षण</div>
+                                <div style="font-size: 0.72rem; opacity: 0.9;">मराठी स्वर - अ ते औ</div>
+                            </div>
+                            <i class="fa-solid fa-book-bookmark" style="font-size: 1.4rem; opacity: 0.6;"></i>
+                        </div>
+
+                        <!-- Learn Subjects Row -->
+                        <div style="padding: 0 1rem; margin-bottom: 0.4rem; display: flex; justify-content: space-between; align-items: center;">
+                            <div style="font-weight: 800; font-size: 0.82rem; color: #111827;">विषय शिका</div>
+                            <div style="font-size: 0.68rem; color: #3F51B5; font-weight: 700;">सर्व</div>
+                        </div>
+
+                        <div class="no-scrollbar" style="display: flex; gap: 0.5rem; padding: 0 1rem 0.85rem; overflow-x: auto;">
+                            <div style="background: white; border-radius: 14px; padding: 0.55rem; min-width: 62px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.03); border: 1px solid #F3F4F6;">
+                                <div style="font-size: 1.35rem; font-weight: 900; color: #D97706; margin-bottom: 0.15rem;">अ</div>
+                                <div style="font-size: 0.62rem; font-weight: 700; color: #374151;">मराठी</div>
+                            </div>
+                            <div style="background: white; border-radius: 14px; padding: 0.55rem; min-width: 62px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.03); border: 1px solid #F3F4F6;">
+                                <div style="font-size: 1.25rem; font-weight: 900; color: #EF4444; margin-bottom: 0.15rem;">Aa</div>
+                                <div style="font-size: 0.62rem; font-weight: 700; color: #374151;">इंग्रजी</div>
+                            </div>
+                            <div style="background: white; border-radius: 14px; padding: 0.55rem; min-width: 62px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.03); border: 1px solid #F3F4F6;">
+                                <div style="font-size: 1.15rem; font-weight: 900; color: #F59E0B; margin-bottom: 0.15rem;">💡</div>
+                                <div style="font-size: 0.62rem; font-weight: 700; color: #374151;">गणित</div>
+                            </div>
+                            <div style="background: white; border-radius: 14px; padding: 0.55rem; min-width: 62px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.03); border: 1px solid #F3F4F6;">
+                                <div style="font-size: 1.15rem; font-weight: 900; color: #10B981; margin-bottom: 0.15rem;">🎵</div>
+                                <div style="font-size: 0.62rem; font-weight: 700; color: #374151;">कविता</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom App Navigation Bar (5 tabs) -->
+                    <div style="background: white; border-top: 1px solid #F3F4F6; padding: 0.45rem 0.4rem 0.65rem; display: flex; justify-content: space-around; align-items: center; text-align: center;">
+                        <div style="background: #EEF2FF; color: #3F51B5; padding: 0.25rem 0.65rem; border-radius: 50px; display: flex; flex-direction: column; align-items: center;">
+                            <i class="fa-solid fa-house" style="font-size: 1rem;"></i>
+                            <div style="font-size: 0.58rem; font-weight: 800; margin-top: 0.1rem;">मुख्य</div>
+                        </div>
+                        <div style="color: #9CA3AF;">
+                            <i class="fa-solid fa-book-open" style="font-size: 1rem;"></i>
+                            <div style="font-size: 0.58rem; font-weight: 600; margin-top: 0.1rem;">शिका</div>
+                        </div>
+                        <div style="color: #9CA3AF;">
+                            <i class="fa-solid fa-clipboard-list" style="font-size: 1rem;"></i>
+                            <div style="font-size: 0.58rem; font-weight: 600; margin-top: 0.1rem;">गृहपाठ</div>
+                        </div>
+                        <div style="color: #9CA3AF;">
+                            <i class="fa-solid fa-star" style="font-size: 1rem;"></i>
+                            <div style="font-size: 0.58rem; font-weight: 600; margin-top: 0.1rem;">बॅज</div>
+                        </div>
+                        <div style="color: #9CA3AF;">
+                            <i class="fa-solid fa-user" style="font-size: 1rem;"></i>
+                            <div style="font-size: 0.58rem; font-weight: 600; margin-top: 0.1rem;">प्रोफाइल</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Phone 2: Learn Screen (शिका) matching user requested Android app screen -->
+                <div class="phone-frame-mockup phone-float-right">
+                    
+                    <!-- Android Camera Hole Punch Dot -->
+                    <div style="width: 14px; height: 14px; background: #000000; border-radius: 50%; position: absolute; left: 50%; transform: translateX(-50%); top: 10px; z-index: 999; border: 1px solid rgba(255,255,255,0.15);"></div>
+
+                    <!-- Top Phone Status Bar -->
+                    <div style="background: #3F51B5; color: white; padding: 0.65rem 1.4rem 0.25rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.72rem; font-weight: 700;">
+                        <span>9:41</span>
+                        <div style="display: flex; gap: 0.35rem; align-items: center; font-size: 0.68rem;">
+                            <span>5G</span>
+                            <i class="fa-solid fa-battery-full"></i>
+                        </div>
+                    </div>
+
+                    <!-- Header: Indigo with Back Arrow, Title "शिका" (तुमचे शिक्षण साहस) and Language Switcher -->
+                    <div style="background: #3F51B5; color: white; padding: 0.85rem 1.25rem 1.25rem; display: flex; justify-content: space-between; align-items: center;">
+                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                            <i class="fa-solid fa-arrow-left" style="font-size: 1.1rem;"></i>
+                            <div>
+                                <div style="font-weight: 800; font-size: 1.2rem; line-height: 1.1;">शिका</div>
+                                <div style="font-size: 0.68rem; opacity: 0.85; font-weight: 500;">तुमचे शिक्षण साहस</div>
+                            </div>
+                        </div>
+
+                        <div style="background: white; color: #3F51B5; padding: 0.2rem 0.55rem; border-radius: 50px; font-size: 0.72rem; font-weight: 800;">
+                            मराठी <span style="opacity: 0.45; color: #6B7280; font-weight: 500;">EN</span>
+                        </div>
+                    </div>
+
+                    <!-- List of 8 Learning Modules (Exact match with Android App शिका screen) -->
+                    <div class="no-scrollbar" style="padding: 0.85rem; display: flex; flex-direction: column; gap: 0.6rem; flex: 1; overflow-y: auto;">
+                        
+                        <!-- Module 1: Marathi -->
+                        <div style="background: white; border-radius: 16px; padding: 0.75rem 0.85rem; border: 1px solid #F3F4F6; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 6px rgba(0,0,0,0.02);">
+                            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                <div style="width: 38px; height: 38px; border-radius: 12px; background: #FFF1F0; color: #EF4444; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.1rem;">
+                                    文A
+                                </div>
+                                <div style="font-weight: 800; font-size: 0.82rem; color: #111827;">मराठी अक्षर ओळख</div>
+                            </div>
+                            <i class="fa-solid fa-chevron-right" style="color: #9CA3AF; font-size: 0.75rem;"></i>
+                        </div>
+
+                        <!-- Module 2: English -->
+                        <div style="background: white; border-radius: 16px; padding: 0.75rem 0.85rem; border: 1px solid #F3F4F6; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 6px rgba(0,0,0,0.02);">
+                            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                <div style="width: 38px; height: 38px; border-radius: 12px; background: #E0F7FA; color: #0284C7; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1rem;">
+                                    Tt
+                                </div>
+                                <div style="font-weight: 800; font-size: 0.82rem; color: #111827;">इंग्रजी अक्षरे</div>
+                            </div>
+                            <i class="fa-solid fa-chevron-right" style="color: #9CA3AF; font-size: 0.75rem;"></i>
+                        </div>
+
+                        <!-- Module 3: Math -->
+                        <div style="background: white; border-radius: 16px; padding: 0.75rem 0.85rem; border: 1px solid #F3F4F6; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 6px rgba(0,0,0,0.02);">
+                            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                <div style="width: 38px; height: 38px; border-radius: 12px; background: #E8F5E9; color: #10B981; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1rem;">
+                                    +-
+                                </div>
+                                <div style="font-weight: 800; font-size: 0.82rem; color: #111827;">गणित</div>
+                            </div>
+                            <i class="fa-solid fa-chevron-right" style="color: #9CA3AF; font-size: 0.75rem;"></i>
+                        </div>
+
+                        <!-- Module 4: Rhymes -->
+                        <div style="background: white; border-radius: 16px; padding: 0.75rem 0.85rem; border: 1px solid #F3F4F6; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 6px rgba(0,0,0,0.02);">
+                            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                <div style="width: 38px; height: 38px; border-radius: 12px; background: #FFFBEB; color: #F59E0B; display: flex; align-items: center; justify-content: center; font-size: 1rem;">
+                                    <i class="fa-solid fa-music"></i>
+                                </div>
+                                <div style="font-weight: 800; font-size: 0.82rem; color: #111827;">कविता व गाणी</div>
+                            </div>
+                            <i class="fa-solid fa-chevron-right" style="color: #9CA3AF; font-size: 0.75rem;"></i>
+                        </div>
+
+                        <!-- Module 5: Stories -->
+                        <div style="background: white; border-radius: 16px; padding: 0.75rem 0.85rem; border: 1px solid #F3F4F6; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 6px rgba(0,0,0,0.02);">
+                            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                <div style="width: 38px; height: 38px; border-radius: 12px; background: #F3E5F5; color: #8B5CF6; display: flex; align-items: center; justify-content: center; font-size: 1rem;">
+                                    <i class="fa-solid fa-book-open"></i>
+                                </div>
+                                <div style="font-weight: 800; font-size: 0.82rem; color: #111827;">गोष्टी</div>
+                            </div>
+                            <i class="fa-solid fa-chevron-right" style="color: #9CA3AF; font-size: 0.75rem;"></i>
+                        </div>
+
+                        <!-- Module 6: Videos -->
+                        <div style="background: white; border-radius: 16px; padding: 0.75rem 0.85rem; border: 1px solid #F3F4F6; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 6px rgba(0,0,0,0.02);">
+                            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                <div style="width: 38px; height: 38px; border-radius: 12px; background: #EEF2FF; color: #3F51B5; display: flex; align-items: center; justify-content: center; font-size: 1rem;">
+                                    <i class="fa-solid fa-circle-play"></i>
+                                </div>
+                                <div style="font-weight: 800; font-size: 0.82rem; color: #111827;">शैक्षणिक व्हिडिओ</div>
+                            </div>
+                            <i class="fa-solid fa-chevron-right" style="color: #9CA3AF; font-size: 0.75rem;"></i>
+                        </div>
+
+                        <!-- Module 7: Quizzes -->
+                        <div style="background: white; border-radius: 16px; padding: 0.75rem 0.85rem; border: 1px solid #F3F4F6; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 6px rgba(0,0,0,0.02);">
+                            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                <div style="width: 38px; height: 38px; border-radius: 12px; background: #E0F2F1; color: #0D9488; display: flex; align-items: center; justify-content: center; font-size: 1rem;">
+                                    <i class="fa-solid fa-circle-question"></i>
+                                </div>
+                                <div style="font-weight: 800; font-size: 0.82rem; color: #111827;">दैनिक क्विझ</div>
+                            </div>
+                            <i class="fa-solid fa-chevron-right" style="color: #9CA3AF; font-size: 0.75rem;"></i>
+                        </div>
+
+                        <!-- Module 8: Homework -->
+                        <div style="background: white; border-radius: 16px; padding: 0.75rem 0.85rem; border: 1px solid #F3F4F6; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 6px rgba(0,0,0,0.02);">
+                            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                <div style="width: 38px; height: 38px; border-radius: 12px; background: #FFF3E0; color: #EA580C; display: flex; align-items: center; justify-content: center; font-size: 1rem;">
+                                    <i class="fa-solid fa-clipboard-check"></i>
+                                </div>
+                                <div style="font-weight: 800; font-size: 0.82rem; color: #111827;">गृहपाठ</div>
+                            </div>
+                            <i class="fa-solid fa-chevron-right" style="color: #9CA3AF; font-size: 0.75rem;"></i>
+                        </div>
+
+                    </div>
+
+                    <!-- Bottom App Navigation Bar with "शिका" active pill -->
+                    <div style="background: white; border-top: 1px solid #F3F4F6; padding: 0.45rem 0.4rem 0.65rem; display: flex; justify-content: space-around; align-items: center; text-align: center;">
+                        <div style="color: #9CA3AF;">
+                            <i class="fa-solid fa-house" style="font-size: 1rem;"></i>
+                            <div style="font-size: 0.58rem; font-weight: 600; margin-top: 0.1rem;">मुख्य</div>
+                        </div>
+                        <div style="background: #EEF2FF; color: #3F51B5; padding: 0.25rem 0.65rem; border-radius: 50px; display: flex; flex-direction: column; align-items: center;">
+                            <i class="fa-solid fa-book-open" style="font-size: 1rem;"></i>
+                            <div style="font-size: 0.58rem; font-weight: 800; margin-top: 0.1rem;">शिका</div>
+                        </div>
+                        <div style="color: #9CA3AF;">
+                            <i class="fa-solid fa-clipboard-list" style="font-size: 1rem;"></i>
+                            <div style="font-size: 0.58rem; font-weight: 600; margin-top: 0.1rem;">गृहपाठ</div>
+                        </div>
+                        <div style="color: #9CA3AF;">
+                            <i class="fa-solid fa-star" style="font-size: 1rem;"></i>
+                            <div style="font-size: 0.58rem; font-weight: 600; margin-top: 0.1rem;">बॅज</div>
+                        </div>
+                        <div style="color: #9CA3AF;">
+                            <i class="fa-solid fa-user" style="font-size: 1rem;"></i>
+                            <div style="font-size: 0.58rem; font-weight: 600; margin-top: 0.1rem;">प्रोफाइल</div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Section Sub-Headline for Platform Features -->
+        <div class="section-headline-centered" style="margin-bottom: 2.5rem;">
+            <div style="background: rgba(236, 72, 153, 0.08); color: #EC4899; padding: 0.35rem 1.1rem; border-radius: 50px; font-weight: 800; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> KEY PLATFORM FEATURES
+            </div>
+            <h2>Why ZP Schools & Parents Choose BrightSteps</h2>
+            <p style="color: #6B7280; font-size: 1.05rem;">Comprehensive primary education ecosystem built for students, teachers, and administrators.</p>
+        </div>
+
+        <!-- Clean Feature Cards Grid matching redesign layout -->
+        <div class="feature-grid-clean" style="margin-bottom: 5rem;">
+            <div class="feature-card-clean">
+                <div style="width: 54px; height: 54px; border-radius: 18px; background: rgba(63, 81, 181, 0.1); color: #3F51B5; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1.25rem;">
+                    <i class="fa-solid fa-language"></i>
+                </div>
+                <h3 style="font-size: 1.25rem; font-weight: 800; color: #111827; margin: 0 0 0.5rem 0;">Bilingual Curriculum</h3>
+                <p style="color: #6B7280; font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                    Interactive Marathi & English audio rhymes, storybooks, letter recognition, and daily math practice designed specifically for primary students.
+                </p>
+            </div>
+
+            <div class="feature-card-clean">
+                <div style="width: 54px; height: 54px; border-radius: 18px; background: rgba(245, 158, 11, 0.1); color: #F59E0B; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1.25rem;">
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <h3 style="font-size: 1.25rem; font-weight: 800; color: #111827; margin: 0 0 0.5rem 0;">Gamified Reward Badges</h3>
+                <p style="color: #6B7280; font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                    Earn glowing star badges ⭐ and attendance trophies for completing lessons and daily quizzes, making learning exciting.
+                </p>
+            </div>
+
+            <div class="feature-card-clean">
+                <div style="width: 54px; height: 54px; border-radius: 18px; background: rgba(16, 185, 129, 0.1); color: #10B981; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1.25rem;">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <h3 style="font-size: 1.25rem; font-weight: 800; color: #111827; margin: 0 0 0.5rem 0;">Attendance & Progress Rings</h3>
+                <p style="color: #6B7280; font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                    Real-time student attendance tracking, lesson completion progress, and direct homework submission status.
+                </p>
+            </div>
+
+            <div class="feature-card-clean">
+                <div style="width: 54px; height: 54px; border-radius: 18px; background: rgba(139, 92, 246, 0.1); color: #8B5CF6; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1.25rem;">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <h3 style="font-size: 1.25rem; font-weight: 800; color: #111827; margin: 0 0 0.5rem 0;">Classroom Management</h3>
+                <p style="color: #6B7280; font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                    Complete Zilla Parishad school admin management for assigning class teachers, student rosters, homework, and notice broadcasts.
+                </p>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <section id="contact" style="padding-top: 1rem;">
+            <div class="section-headline-centered" style="margin-bottom: 2rem;">
+                <h2>Contact Us</h2>
+                <p>Get in touch with Zilla Parishad Primary School administration</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+                
+                <!-- Contact Details -->
+                <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+                    <div class="contact-card-clean" style="display: flex; gap: 1.25rem; align-items: flex-start;">
+                        <div style="width: 50px; height: 50px; border-radius: 16px; background: rgba(236, 72, 153, 0.1); color: #EC4899; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0;">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div>
+                            <h4 style="font-weight: 800; color: #111827; font-size: 1.05rem; margin: 0 0 0.25rem 0;">School Campus Location</h4>
+                            <p style="color: #6B7280; font-size: 0.92rem; line-height: 1.5; margin: 0;">
+                                Zilla Parishad Primary School Campus,<br>Main Road, Maharashtra
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="contact-card-clean" style="display: flex; gap: 1.25rem; align-items: flex-start;">
+                        <div style="width: 50px; height: 50px; border-radius: 16px; background: rgba(16, 185, 129, 0.1); color: #10B981; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0;">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4 style="font-weight: 800; color: #111827; font-size: 1.05rem; margin: 0 0 0.25rem 0;">Phone Contact</h4>
+                            <p style="color: #6B7280; font-size: 0.92rem; margin: 0;">
+                                <a href="tel:+919970343404" style="color: #10B981; text-decoration: none; font-weight: 700;">+91 9970343404</a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="contact-card-clean" style="display: flex; gap: 1.25rem; align-items: flex-start;">
+                        <div style="width: 50px; height: 50px; border-radius: 16px; background: rgba(139, 92, 246, 0.1); color: #8B5CF6; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0;">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4 style="font-weight: 800; color: #111827; font-size: 1.05rem; margin: 0 0 0.25rem 0;">Email Address</h4>
+                            <p style="color: #6B7280; font-size: 0.92rem; margin: 0;">
+                                <a href="mailto:thepranit.19@gmail.com" style="color: #8B5CF6; text-decoration: none; font-weight: 700;">thepranit.19@gmail.com</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-card-clean">
+                    <h3 style="font-size: 1.35rem; font-weight: 800; color: #111827; margin: 0 0 0.3rem 0;">Send Us an Inquiry</h3>
+                    <p style="color: #6B7280; font-size: 0.9rem; margin-bottom: 1.5rem;">Have questions regarding student admissions or classes? Send us a message.</p>
+
+                    <form onsubmit="event.preventDefault(); alert('Thank you for contacting BrightSteps Primary School!');">
+                        <div style="margin-bottom: 1.25rem;">
+                            <label style="display: block; font-weight: 700; font-size: 0.88rem; color: #111827; margin-bottom: 0.4rem;">Full Name</label>
+                            <input type="text" placeholder="Your full name" required style="width: 100%; padding: 0.75rem 1rem; border-radius: 14px; border: 1px solid #E5E7EB; font-size: 0.95rem;">
+                        </div>
+
+                        <div style="margin-bottom: 1.25rem;">
+                            <label style="display: block; font-weight: 700; font-size: 0.88rem; color: #111827; margin-bottom: 0.4rem;">Phone Number</label>
+                            <input type="tel" placeholder="Mobile number" required style="width: 100%; padding: 0.75rem 1rem; border-radius: 14px; border: 1px solid #E5E7EB; font-size: 0.95rem;">
+                        </div>
+
+                        <div style="margin-bottom: 1.5rem;">
+                            <label style="display: block; font-weight: 700; font-size: 0.88rem; color: #111827; margin-bottom: 0.4rem;">Message / Inquiry</label>
+                            <textarea rows="3" placeholder="Type your message..." required style="width: 100%; padding: 0.75rem 1rem; border-radius: 14px; border: 1px solid #E5E7EB; font-size: 0.95rem; resize: vertical;"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-pink-pill">
+                            <i class="fa-solid fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer matching clean design concept -->
+    <footer class="footer-clean">
+        <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.1);">
+            <div>
+                <div class="brand-logo" style="color: white; margin-bottom: 1rem;">
+                    <i class="fa-solid fa-graduation-cap" style="color: #EC4899;"></i> Bright<span>Steps</span>
+                </div>
+                <p style="color: #9CA3AF; max-width: 400px; font-size: 0.9rem; line-height: 1.5; margin-bottom: 0.75rem;">
+                    Zilla Parishad Primary School Digital Education Portal. Smart learning for primary students.
+                </p>
+                <div style="font-size: 0.88rem; color: #D1D5DB; display: flex; flex-direction: column; gap: 0.35rem;">
+                    <div><i class="fa-solid fa-phone" style="color: #10B981; margin-right: 0.4rem;"></i> <a href="tel:+919970343404" style="color: #D1D5DB; text-decoration: none;">+91 9970343404</a></div>
+                    <div><i class="fa-solid fa-envelope" style="color: #8B5CF6; margin-right: 0.4rem;"></i> <a href="mailto:thepranit.19@gmail.com" style="color: #D1D5DB; text-decoration: none;">thepranit.19@gmail.com</a></div>
+                </div>
+            </div>
+
+            <div>
+                <h4 style="font-weight: 800; margin-bottom: 1rem; font-size: 1rem; color: white;">Quick Links</h4>
+                <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.9rem; color: #9CA3AF; padding: 0;">
+                    <li><a href="#home" style="color: #9CA3AF; text-decoration: none;">Home</a></li>
+                    <li><a href="#contact" style="color: #9CA3AF; text-decoration: none;">Contact Us</a></li>
+                    <li><a href="{% url 'login' %}" style="color: #9CA3AF; text-decoration: none;">Admin Login</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="max-width: 1200px; margin: 1.5rem auto 0; text-align: center; color: #6B7280; font-size: 0.85rem;">
+            &copy; 2026 BrightSteps - Zilla Parishad Primary School. All rights reserved.
+        </div>
+    </footer>
+
+</body>
+</html>

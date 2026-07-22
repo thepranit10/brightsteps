@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}Students - BrightSteps{% endblock %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+    <h2>Manage Students</h2>
+    <div style="display: flex; gap: 1rem; align-items: center;">
+        <form method="GET" style="display: flex; gap: 0.5rem; align-items: center;">
+            <select name="grade" onchange="this.form.submit()" class="form-control" style="padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.9rem;">
+                <option value="All" {% if not selected_grade or selected_grade == 'All' %}selected{% endif %}>Filter Class: All</option>
+                {% for c in class_choices %}
+                    <option value="{{ c }}" {% if selected_grade == c %}selected{% endif %}>{{ c }}</option>
+                {% endfor %}
+            </select>
+        </form>
+        <a href="{% url 'student_upload_csv' %}" class="btn" style="background: rgba(16, 185, 129, 0.1); color: var(--success);"><i class="fa-solid fa-file-csv"></i> Bulk Upload CSV</a>
+        <a href="{% url 'student_create' %}" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Add Student</a>
+    </div>
+</div>
+
+<div class="glass" style="padding: 1rem; border-radius: var(--radius-lg); overflow-x: auto;">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Roll Number</th>
+                <th>Class</th>
+                <th>Parent Phone</th>
+                <th>Joined Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr>
+                <td style="font-weight: 500; color: var(--primary);">{{ student.name }}</td>
+                <td>{{ student.roll_number }}</td>
+                <td><span style="background: rgba(245, 158, 11, 0.2); color: var(--accent); padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600;">{{ student.grade_level }}</span></td>
+                <td>{{ student.parent_phone_number|default:"-" }}</td>
+                <td style="color: var(--text-muted); font-size: 0.9rem;">{{ student.joined_date|date:"M d, Y" }}</td>
+                <td>
+                    <a href="{% url 'student_edit' student.id %}" class="btn btn-sm" style="background: rgba(59, 130, 246, 0.1); color: var(--primary); margin-right: 0.5rem;"><i class="fa-solid fa-pen"></i></a>
+                    <form method="POST" action="{% url 'student_delete' student.id %}" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-sm" style="background: rgba(239, 68, 68, 0.1); color: var(--danger);"><i class="fa-solid fa-trash"></i></button>
+                    </form>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6" style="text-align: center; color: var(--text-muted); padding: 2rem;">No students found. Add one or bulk upload to get started!</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
