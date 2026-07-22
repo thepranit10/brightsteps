@@ -472,12 +472,35 @@
             }
         }
 
-        @media (max-width: 900px) {
+        .developer-profile-card {
+            background: #FFFFFF;
+            border-radius: 28px;
+            border: 1px solid #E5E7EB;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+            margin: 4rem 0 5rem 0;
+            display: grid;
+            grid-template-columns: 340px 1fr;
+            align-items: stretch;
+            scroll-margin-top: 100px;
+            width: 100%;
+            box-sizing: border-box;
+            clear: both;
+            position: relative;
+        }
+
+        .developer-profile-card > div {
+            min-width: 0;
+        }
+
+        @media (max-width: 960px) {
             .developer-profile-card {
                 grid-template-columns: 1fr !important;
+                margin: 2.5rem 0 3.5rem 0 !important;
             }
             .developer-profile-card > div:first-child {
-                min-height: 320px !important;
+                min-height: 280px !important;
+                height: 320px !important;
             }
             .developer-profile-card > div:last-child {
                 padding: 2rem 1.5rem !important;
@@ -528,7 +551,7 @@
 
         <ul class="nav-links-center">
             <li><a href="#home" class="nav-link-item active">Home</a></li>
-            <li><a href="#about" class="nav-link-item">About</a></li>
+            <li><a href="{% url 'about' %}" class="nav-link-item">About</a></li>
             <li><a href="#contact" class="nav-link-item">Contact</a></li>
         </ul>
 
@@ -1004,83 +1027,8 @@
             </div>
         </div>
 
-        <!-- Developer Profile Card matching Yarned With Love reference layout -->
-        <div class="developer-profile-card" id="about" style="background: #FFFFFF; border-radius: 28px; border: 1px solid #E5E7EB; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); overflow: hidden; margin-bottom: 5rem; display: grid; grid-template-columns: 360px 1fr; align-items: stretch; scroll-margin-top: 100px;">
-            
-            <!-- Left Side: Profile Image -->
-            <div style="position: relative; background: #0F172A; min-height: 380px;">
-                <img src="{% static 'images/pranit_gopale.jpg' %}" alt="Pranit Gopale" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-            </div>
-
-            <!-- Right Side: Developer Details -->
-            <div style="padding: 3rem 3.5rem; display: flex; flex-direction: column; justify-content: center; background: #FFFFFF;">
-                
-                <!-- Category Badge -->
-                <div style="color: #3F51B5; font-weight: 900; font-size: 0.82rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.5rem;">
-                    WEB EXPERIENCE CRAFTED BY
-                </div>
-
-                <!-- Title -->
-                <h2 style="font-size: 2.5rem; font-weight: 900; color: #111827; margin: 0 0 1.25rem 0; letter-spacing: -0.8px;">
-                    Pranit Gopale
-                </h2>
-
-                <!-- Bio Description -->
-                <p style="color: #4B5563; font-size: 0.98rem; line-height: 1.7; margin: 0 0 1.75rem 0; font-weight: 500;">
-                    As the Full Stack Developer & Technical Lead behind <strong>BrightSteps</strong>, Pranit blends technical expertise with a passion for user-centric design. He specializes in building robust, meaningful digital solutions that bridge the gap between Zilla Parishad primary education and modern interactive learning.
-                </p>
-
-                <!-- Connect Links -->
-                <div style="margin-bottom: 1.5rem;">
-                    <div style="font-weight: 800; font-size: 0.95rem; color: #111827; margin-bottom: 0.75rem;">
-                        Connect:
-                    </div>
-                    <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
-                        <!-- LinkedIn -->
-                        <a href="https://linkedin.com/in/pranitgopale" target="_blank" title="LinkedIn" style="width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid #3B82F6; color: #3B82F6; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.15rem; transition: all 0.3s ease;">
-                            <i class="fa-brands fa-linkedin-in"></i>
-                        </a>
-
-                        <!-- GitHub -->
-                        <a href="https://github.com/thepranit10" target="_blank" title="GitHub" style="width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid #111827; color: #111827; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.15rem; transition: all 0.3s ease;">
-                            <i class="fa-brands fa-github"></i>
-                        </a>
-
-                        <!-- WhatsApp -->
-                        <a href="https://wa.me/919970343404" target="_blank" title="WhatsApp" style="width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid #10B981; color: #10B981; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.15rem; transition: all 0.3s ease;">
-                            <i class="fa-brands fa-whatsapp"></i>
-                        </a>
-
-                        <!-- Email -->
-                        <a href="mailto:thepranit.19@gmail.com" title="Email" style="width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid #EC4899; color: #EC4899; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.15rem; transition: all 0.3s ease;">
-                            <i class="fa-solid fa-envelope"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Expertise Badges -->
-                <div>
-                    <div style="font-weight: 800; font-size: 0.95rem; color: #111827; margin-bottom: 0.75rem;">
-                        Expertise:
-                    </div>
-                    <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
-                        <span style="background: #F3F4F6; border: 1px solid #E5E7EB; color: #1F2937; padding: 0.4rem 0.9rem; border-radius: 8px; font-weight: 800; font-size: 0.82rem;">
-                            Full Stack Development
-                        </span>
-                        <span style="background: #F3F4F6; border: 1px solid #E5E7EB; color: #1F2937; padding: 0.4rem 0.9rem; border-radius: 8px; font-weight: 800; font-size: 0.82rem;">
-                            UI/UX Architecture
-                        </span>
-                        <span style="background: #F3F4F6; border: 1px solid #E5E7EB; color: #1F2937; padding: 0.4rem 0.9rem; border-radius: 8px; font-weight: 800; font-size: 0.82rem;">
-                            EdTech Solutions
-                        </span>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
         <!-- Contact Section -->
-        <section id="contact" style="padding-top: 1rem;">
+        <section id="contact" style="padding-top: 2rem; width: 100%; clear: both; position: relative;">
             <div class="section-headline-centered" style="margin-bottom: 2rem;">
                 <h2>Contact Us</h2>
                 <p>Get in touch with Zilla Parishad Primary School administration</p>

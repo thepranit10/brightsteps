@@ -33,6 +33,9 @@ def public_home(request):
     }
     return render(request, 'home.html', context)
 
+def about_view(request):
+    return render(request, 'about.html')
+
 def custom_login(request):
     if request.user.is_authenticated:
         return redirect('dashboard_home')
