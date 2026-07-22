@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - BrightSteps | Zilla Parishad Primary School Portal</title>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title>About Us — BrightSteps | Zilla Parishad Primary School Portal</title>
+
+    <!-- Google Fonts: DM Sans & Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <!-- FontAwesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
         * {
             box-sizing: border-box;
@@ -19,17 +19,20 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: #F8FAFC;
-            color: #1E293B;
+            font-family: 'DM Sans', 'Plus Jakarta Sans', sans-serif;
+            background: #05060A;
+            color: #FFFFFF;
             line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Clean Top Navigation Header */
+        /* Sticky Glassmorphic Navbar Header (getfluently.app style) */
         .navbar-clean {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid #E2E8F0;
+            background: rgba(5, 6, 10, 0.82);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             padding: 1rem 3rem;
             display: flex;
             justify-content: space-between;
@@ -42,80 +45,122 @@
         .brand-logo {
             display: flex;
             align-items: center;
-            gap: 0.6rem;
+            gap: 0.65rem;
             font-weight: 900;
-            font-size: 1.35rem;
-            color: #0F172A;
+            font-size: 1.4rem;
+            color: #FFFFFF;
             text-decoration: none;
+            letter-spacing: -0.5px;
         }
 
         .brand-logo span {
             color: #EC4899;
         }
 
-        .nav-links-center {
+        /* Center Segmented Pill Switcher */
+        .nav-pill-switcher {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.25rem;
+            border-radius: 50px;
             display: flex;
-            gap: 2rem;
-            list-style: none;
-            margin: 0;
-            padding: 0;
+            gap: 0.25rem;
         }
 
-        .nav-link-item {
-            text-decoration: none;
-            color: #64748B;
+        .nav-pill-btn {
+            padding: 0.45rem 1.1rem;
+            border-radius: 50px;
             font-weight: 700;
-            font-size: 0.95rem;
-            transition: color 0.3s ease;
+            font-size: 0.85rem;
+            color: #94A3B8;
+            text-decoration: none;
+            transition: all 0.3s ease;
         }
 
-        .nav-link-item:hover, .nav-link-item.active {
-            color: #0F172A;
+        .nav-pill-btn.active, .nav-pill-btn:hover {
+            background: #FFFFFF;
+            color: #05060A;
         }
 
-        /* Main Container */
+        /* Container */
         .container {
             max-width: 1160px;
             margin: 0 auto;
-            padding: 3.5rem 1.5rem;
+            padding: 4rem 1.5rem;
         }
 
         /* Hero Header */
         .hero-header-centered {
             text-align: center;
-            margin-bottom: 3.5rem;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .hero-glow-bg {
+            position: absolute;
+            top: -10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(1, 113, 227, 0.25) 0%, rgba(236, 72, 153, 0.1) 40%, rgba(5, 6, 10, 0) 70%);
+            filter: blur(50px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .category-badge-pill {
+            background: rgba(0, 230, 168, 0.12);
+            border: 1px solid rgba(0, 230, 168, 0.3);
+            color: #00E6A8;
+            padding: 0.45rem 1.25rem;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 0.82rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
         }
 
         .main-hero-headline {
-            font-size: 3.2rem;
+            font-size: 3.8rem;
             font-weight: 900;
-            line-height: 1.15;
-            margin: 0 0 1rem 0;
-            letter-spacing: -1.2px;
-            color: #0F172A;
+            line-height: 1.1;
+            margin: 0 0 1.25rem 0;
+            letter-spacing: -1.5px;
+            color: #FFFFFF;
+            position: relative;
+            z-index: 1;
         }
 
-        .gradient-text {
-            background: linear-gradient(135deg, #3F51B5 0%, #EC4899 50%, #8B5CF6 100%);
+        .gradient-glow-text {
+            background: linear-gradient(135deg, #0171E3 0%, #00E6A8 50%, #EC4899 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .hero-subtitle-centered {
             font-size: 1.15rem;
-            color: #64748B;
+            color: #94A3B8;
             max-width: 720px;
             margin: 0 auto;
             line-height: 1.65;
             font-weight: 500;
+            position: relative;
+            z-index: 1;
         }
 
-        /* Developer Profile Card matching yarnwithlove.store/about/ reference */
+        /* Developer Profile Card matching yarnwithlove.store/about/ reference in Dark Mode */
         .developer-profile-card {
-            background: #FFFFFF;
-            border-radius: 28px;
-            border: 1px solid #E2E8F0;
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.04);
+            background: #11141D;
+            border-radius: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
             overflow: hidden;
             margin-bottom: 4rem;
             display: grid;
@@ -137,26 +182,46 @@
         }
 
         .mission-card {
-            background: #FFFFFF;
-            border-radius: 24px;
+            background: #11141D;
+            border-radius: 28px;
             padding: 2.25rem;
-            border: 1px solid #E2E8F0;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.02);
-            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.35s ease;
         }
 
         .mission-card:hover {
             transform: translateY(-6px);
-            box-shadow: 0 18px 40px rgba(63, 81, 181, 0.1);
-            border-color: rgba(63, 81, 181, 0.25);
+            border-color: rgba(1, 113, 227, 0.4);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
         }
 
         /* Footer */
-        .footer-clean {
-            background: #0F172A;
-            color: #FFFFFF;
-            padding: 3.5rem 3rem 2rem;
+        .footer-dark {
+            background: #000000;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 4rem 3rem 2rem;
             margin-top: 5rem;
+        }
+
+        /* Buttons */
+        .btn-primary-glow {
+            background: linear-gradient(135deg, #0171E3 0%, #00E6A8 100%);
+            color: #FFFFFF;
+            padding: 0.75rem 1.6rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 0.92rem;
+            box-shadow: 0 10px 30px rgba(1, 113, 227, 0.35);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary-glow:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 40px rgba(1, 113, 227, 0.5);
         }
 
         /* Responsive Breakpoints */
@@ -171,55 +236,38 @@
             .developer-profile-card > div:last-child {
                 padding: 2.25rem 1.75rem !important;
             }
-        }
-
-        @media (max-width: 768px) {
-            .navbar-clean {
-                padding: 0.85rem 1.25rem;
-                flex-direction: column;
-                gap: 0.85rem;
-            }
-            .nav-links-center {
-                gap: 1.25rem;
-            }
             .main-hero-headline {
-                font-size: 2.2rem;
-                letter-spacing: -0.5px;
-            }
-            .container {
-                padding: 2rem 1rem;
-            }
-            .footer-clean {
-                padding: 2.5rem 1.5rem 1.5rem;
+                font-size: 2.5rem;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation Header -->
+    <!-- Sticky Navigation Header -->
     <header class="navbar-clean">
         <a href="{% url 'home_page' %}" class="brand-logo">
             <i class="fa-solid fa-graduation-cap" style="color: #EC4899;"></i> Bright<span>Steps</span>
         </a>
 
-        <ul class="nav-links-center">
-            <li><a href="{% url 'home_page' %}" class="nav-link-item">Home</a></li>
-            <li><a href="{% url 'about' %}" class="nav-link-item active">About</a></li>
-            <li><a href="{% url 'home_page' %}#contact" class="nav-link-item">Contact</a></li>
-        </ul>
+        <!-- Center Segmented Pill Switcher -->
+        <div class="nav-pill-switcher">
+            <a href="{% url 'home_page' %}#students" class="nav-pill-btn">For Students</a>
+            <a href="{% url 'about' %}" class="nav-pill-btn active">For Teachers & Admins</a>
+        </div>
 
-        <div style="display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap;">
-            <a href="{% static 'downloads/brightsteps-v1.0.apk' %}" download="brightsteps-v1.0.apk" style="background: #10B981; color: white; padding: 0.6rem 1.25rem; border-radius: 50px; text-decoration: none; font-weight: 800; font-size: 0.88rem; box-shadow: 0 6px 18px rgba(16, 185, 129, 0.3); display: inline-flex; align-items: center; gap: 0.4rem;">
+        <div style="display: flex; gap: 0.65rem; align-items: center; flex-wrap: wrap;">
+            <a href="{% static 'downloads/brightsteps-v1.0.apk' %}" download="brightsteps-v1.0.apk" class="btn-primary-glow">
                 <i class="fa-brands fa-android"></i> Download App
             </a>
+
             {% if user.is_authenticated %}
-                <a href="{% url 'dashboard_home' %}" style="background: #0F172A; color: white; padding: 0.6rem 1.35rem; border-radius: 50px; text-decoration: none; font-weight: 800; font-size: 0.88rem; box-shadow: 0 4px 14px rgba(15, 23, 42, 0.15); display: inline-flex; align-items: center; gap: 0.45rem;">
+                <a href="{% url 'dashboard_home' %}" style="background: rgba(255, 255, 255, 0.08); color: white; border: 1px solid rgba(255, 255, 255, 0.15); padding: 0.55rem 1.25rem; border-radius: 50px; text-decoration: none; font-weight: 800; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 0.45rem;">
                     <i class="fa-solid fa-gauge" style="color: #60A5FA;"></i> Admin Dashboard
                 </a>
             {% else %}
-                <a href="{% url 'login' %}" style="background: #FFFFFF; color: #0F172A; border: 1.5px solid #CBD5E1; padding: 0.58rem 1.35rem; border-radius: 50px; text-decoration: none; font-weight: 800; font-size: 0.88rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03); display: inline-flex; align-items: center; gap: 0.45rem; transition: all 0.3s ease;">
-                    <i class="fa-solid fa-user-shield" style="color: #3F51B5;"></i> Admin Portal
+                <a href="{% url 'login' %}" style="background: rgba(255, 255, 255, 0.08); color: white; border: 1px solid rgba(255, 255, 255, 0.15); padding: 0.55rem 1.25rem; border-radius: 50px; text-decoration: none; font-weight: 800; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 0.45rem;">
+                    <i class="fa-solid fa-user-shield" style="color: #0171E3;"></i> Admin Portal
                 </a>
             {% endif %}
         </div>
@@ -229,63 +277,65 @@
 
         <!-- Hero Header -->
         <div class="hero-header-centered">
-            <div style="background: rgba(63, 81, 181, 0.08); color: #3F51B5; border: 1px solid rgba(63, 81, 181, 0.18); padding: 0.45rem 1.25rem; border-radius: 50px; font-weight: 800; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 1.25rem;">
+            <div class="hero-glow-bg"></div>
+
+            <div class="category-badge-pill">
                 <i class="fa-solid fa-circle-info"></i> ABOUT BRIGHTSTEPS & CREATOR
             </div>
-            
+
             <h1 class="main-hero-headline">
-                Empowering Rural Education Through <span class="gradient-text">Digital Innovation.</span>
+                Empowering ZP Schools Through <br><span class="gradient-glow-text">Digital Innovation.</span>
             </h1>
-            
+
             <p class="hero-subtitle-centered">
                 BrightSteps is a dedicated digital education and administrative ecosystem crafted specifically for Zilla Parishad Primary Schools in Maharashtra. We bridge the gap with bilingual Marathi & English learning modules, student tracking, and gamified star rewards.
             </p>
         </div>
 
-        <!-- Developer Profile Card matching Yarned With Love reference layout -->
+        <!-- Developer Profile Card matching Yarned With Love reference layout in Dark Mode -->
         <div class="developer-profile-card">
             
             <!-- Left Side: Profile Image -->
-            <div style="position: relative; background: #0F172A; min-height: 380px;">
+            <div style="position: relative; background: #000000; min-height: 380px;">
                 <img src="{% static 'images/pranit_gopale.jpg' %}" alt="Pranit Gopale" style="width: 100%; height: 100%; object-fit: cover; display: block;">
             </div>
 
             <!-- Right Side: Developer Details -->
-            <div style="padding: 3.25rem 3.5rem; display: flex; flex-direction: column; justify-content: center; background: #FFFFFF;">
+            <div style="padding: 3.25rem 3.5rem; display: flex; flex-direction: column; justify-content: center; background: #11141D;">
                 
                 <!-- Category Badge -->
-                <div style="color: #3F51B5; font-weight: 900; font-size: 0.82rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.5rem;">
+                <div style="color: #00E6A8; font-weight: 900; font-size: 0.82rem; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 0.5rem;">
                     WEB EXPERIENCE CRAFTED BY
                 </div>
 
                 <!-- Title -->
-                <h2 style="font-size: 2.5rem; font-weight: 900; color: #0F172A; margin: 0 0 1.25rem 0; letter-spacing: -0.8px;">
+                <h2 style="font-size: 2.5rem; font-weight: 900; color: #FFFFFF; margin: 0 0 1.25rem 0; letter-spacing: -0.8px;">
                     Pranit Gopale
                 </h2>
 
                 <!-- Bio Description -->
-                <p style="color: #475569; font-size: 0.98rem; line-height: 1.7; margin: 0 0 1.75rem 0; font-weight: 500;">
+                <p style="color: #94A3B8; font-size: 1rem; line-height: 1.7; margin: 0 0 1.75rem 0; font-weight: 500;">
                     As the Full Stack Developer & Technical Lead behind <strong>BrightSteps</strong>, Pranit blends technical expertise with a passion for user-centric design. He specializes in building robust, meaningful digital solutions that bridge the gap between Zilla Parishad primary education and modern interactive learning.
                 </p>
 
                 <!-- Connect Links -->
                 <div style="margin-bottom: 1.5rem;">
-                    <div style="font-weight: 800; font-size: 0.95rem; color: #0F172A; margin-bottom: 0.75rem;">
+                    <div style="font-weight: 800; font-size: 0.95rem; color: #FFFFFF; margin-bottom: 0.75rem;">
                         Connect:
                     </div>
                     <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
                         <!-- LinkedIn -->
-                        <a href="https://www.linkedin.com/in/thepranit/" target="_blank" title="LinkedIn" style="width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid #3B82F6; color: #3B82F6; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.15rem; transition: all 0.3s ease;">
+                        <a href="https://www.linkedin.com/in/thepranit/" target="_blank" title="LinkedIn" style="width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid #0171E3; color: #0171E3; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.15rem; transition: all 0.3s ease;">
                             <i class="fa-brands fa-linkedin-in"></i>
                         </a>
 
                         <!-- GitHub -->
-                        <a href="https://github.com/thepranit10" target="_blank" title="GitHub" style="width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid #0F172A; color: #0F172A; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.15rem; transition: all 0.3s ease;">
+                        <a href="https://github.com/thepranit10" target="_blank" title="GitHub" style="width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid #FFFFFF; color: #FFFFFF; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.15rem; transition: all 0.3s ease;">
                             <i class="fa-brands fa-github"></i>
                         </a>
 
                         <!-- WhatsApp -->
-                        <a href="https://wa.me/919970343404" target="_blank" title="WhatsApp" style="width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid #10B981; color: #10B981; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.15rem; transition: all 0.3s ease;">
+                        <a href="https://wa.me/919970343404" target="_blank" title="WhatsApp" style="width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid #00E6A8; color: #00E6A8; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.15rem; transition: all 0.3s ease;">
                             <i class="fa-brands fa-whatsapp"></i>
                         </a>
 
@@ -298,17 +348,17 @@
 
                 <!-- Expertise Badges -->
                 <div>
-                    <div style="font-weight: 800; font-size: 0.95rem; color: #0F172A; margin-bottom: 0.75rem;">
+                    <div style="font-weight: 800; font-size: 0.95rem; color: #FFFFFF; margin-bottom: 0.75rem;">
                         Expertise:
                     </div>
                     <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
-                        <span style="background: #F1F5F9; border: 1px solid #E2E8F0; color: #334155; padding: 0.4rem 0.9rem; border-radius: 8px; font-weight: 800; font-size: 0.82rem;">
+                        <span style="background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12); color: #FFFFFF; padding: 0.4rem 0.9rem; border-radius: 8px; font-weight: 800; font-size: 0.82rem;">
                             Full Stack Development
                         </span>
-                        <span style="background: #F1F5F9; border: 1px solid #E2E8F0; color: #334155; padding: 0.4rem 0.9rem; border-radius: 8px; font-weight: 800; font-size: 0.82rem;">
+                        <span style="background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12); color: #FFFFFF; padding: 0.4rem 0.9rem; border-radius: 8px; font-weight: 800; font-size: 0.82rem;">
                             UI/UX Architecture
                         </span>
-                        <span style="background: #F1F5F9; border: 1px solid #E2E8F0; color: #334155; padding: 0.4rem 0.9rem; border-radius: 8px; font-weight: 800; font-size: 0.82rem;">
+                        <span style="background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12); color: #FFFFFF; padding: 0.4rem 0.9rem; border-radius: 8px; font-weight: 800; font-size: 0.82rem;">
                             EdTech Solutions
                         </span>
                     </div>
@@ -318,38 +368,38 @@
         </div>
 
         <!-- Platform Mission & Core Values -->
-        <div style="text-align: center; margin-bottom: 2.5rem;">
-            <h2 style="font-size: 2.2rem; font-weight: 900; color: #0F172A; margin-bottom: 0.5rem;">Our Core Focus</h2>
-            <p style="color: #64748B; font-size: 1.05rem;">Building meaningful digital tools that make learning accessible, engaging, and measurable.</p>
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <h2 style="font-size: 2.4rem; font-weight: 900; color: #FFFFFF; margin-bottom: 0.5rem;">Our Core Focus</h2>
+            <p style="color: #94A3B8; font-size: 1.05rem;">Building meaningful digital tools that make learning accessible, engaging, and measurable.</p>
         </div>
 
         <div class="mission-grid">
             <div class="mission-card">
-                <div style="width: 52px; height: 52px; border-radius: 16px; background: rgba(63, 81, 181, 0.1); color: #3F51B5; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; margin-bottom: 1.25rem;">
+                <div style="width: 52px; height: 52px; border-radius: 16px; background: rgba(1, 113, 227, 0.15); color: #0171E3; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; margin-bottom: 1.25rem;">
                     <i class="fa-solid fa-language"></i>
                 </div>
-                <h3 style="font-size: 1.2rem; font-weight: 800; color: #0F172A; margin: 0 0 0.5rem 0;">Bilingual Marathi & English</h3>
-                <p style="color: #64748B; font-size: 0.93rem; margin: 0;">
+                <h3 style="font-size: 1.25rem; font-weight: 800; color: #FFFFFF; margin: 0 0 0.5rem 0;">Bilingual Marathi & English</h3>
+                <p style="color: #94A3B8; font-size: 0.95rem; margin: 0;">
                     Designing interactive learning modules for primary students in rural Maharashtra with native language accessibility.
                 </p>
             </div>
 
             <div class="mission-card">
-                <div style="width: 52px; height: 52px; border-radius: 16px; background: rgba(245, 158, 11, 0.1); color: #F59E0B; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; margin-bottom: 1.25rem;">
+                <div style="width: 52px; height: 52px; border-radius: 16px; background: rgba(245, 158, 11, 0.15); color: #F59E0B; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; margin-bottom: 1.25rem;">
                     <i class="fa-solid fa-star"></i>
                 </div>
-                <h3 style="font-size: 1.2rem; font-weight: 800; color: #0F172A; margin: 0 0 0.5rem 0;">Gamified Student Rewards</h3>
-                <p style="color: #64748B; font-size: 0.93rem; margin: 0;">
+                <h3 style="font-size: 1.25rem; font-weight: 800; color: #FFFFFF; margin: 0 0 0.5rem 0;">Gamified Student Rewards</h3>
+                <p style="color: #94A3B8; font-size: 0.95rem; margin: 0;">
                     Encouraging consistent attendance and quiz participation with glowing star badges and reward trophies.
                 </p>
             </div>
 
             <div class="mission-card">
-                <div style="width: 52px; height: 52px; border-radius: 16px; background: rgba(16, 185, 129, 0.1); color: #10B981; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; margin-bottom: 1.25rem;">
+                <div style="width: 52px; height: 52px; border-radius: 16px; background: rgba(0, 230, 168, 0.15); color: #00E6A8; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; margin-bottom: 1.25rem;">
                     <i class="fa-solid fa-school"></i>
                 </div>
-                <h3 style="font-size: 1.2rem; font-weight: 800; color: #0F172A; margin: 0 0 0.5rem 0;">School Administration</h3>
-                <p style="color: #64748B; font-size: 0.93rem; margin: 0;">
+                <h3 style="font-size: 1.25rem; font-weight: 800; color: #FFFFFF; margin: 0 0 0.5rem 0;">School Administration</h3>
+                <p style="color: #94A3B8; font-size: 0.95rem; margin: 0;">
                     Streamlining teacher rosters, homework assignments, notice broadcasts, and student performance metrics in one portal.
                 </p>
             </div>
@@ -358,19 +408,15 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer-clean">
-        <div style="max-width: 1160px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem; margin-bottom: 2.5rem;">
+    <footer class="footer-dark">
+        <div style="max-width: 1160px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem; margin-bottom: 3rem;">
             <div>
-                <div class="brand-logo" style="color: white; margin-bottom: 1rem;">
+                <div class="brand-logo" style="margin-bottom: 1rem;">
                     <i class="fa-solid fa-graduation-cap" style="color: #EC4899;"></i> Bright<span>Steps</span>
                 </div>
-                <p style="color: #94A3B8; max-width: 320px; font-size: 0.9rem; margin: 0 0 1rem 0;">
-                    Zilla Parishad Primary School Digital Education Portal.<br>Smart learning for primary students.
+                <p style="color: #94A3B8; max-width: 320px; font-size: 0.9rem; margin: 0;">
+                    Zilla Parishad Primary School Digital Education Portal.<br>Smart learning for primary students in Maharashtra.
                 </p>
-                <div style="color: #94A3B8; font-size: 0.88rem; display: flex; flex-direction: column; gap: 0.35rem;">
-                    <div><i class="fa-solid fa-phone" style="color: #10B981;"></i> +91 9970343404</div>
-                    <div><i class="fa-solid fa-envelope" style="color: #8B5CF6;"></i> thepranit.19@gmail.com</div>
-                </div>
             </div>
 
             <div>
@@ -379,12 +425,12 @@
                     <li><a href="{% url 'home_page' %}" style="color: #94A3B8; text-decoration: none;">Home</a></li>
                     <li><a href="{% url 'about' %}" style="color: #94A3B8; text-decoration: none;">About Developer</a></li>
                     <li><a href="{% url 'home_page' %}#contact" style="color: #94A3B8; text-decoration: none;">Contact Us</a></li>
-                    <li><a href="{% url 'login' %}" style="color: #94A3B8; text-decoration: none;">Admin Login</a></li>
+                    <li><a href="{% url 'login' %}" style="color: #94A3B8; text-decoration: none;">Admin Portal</a></li>
                 </ul>
             </div>
         </div>
 
-        <div style="border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 1.5rem; text-align: center; color: #64748B; font-size: 0.85rem;">
+        <div style="border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 1.5rem; text-align: center; color: #64748B; font-size: 0.85rem;">
             © 2026 BrightSteps - Zilla Parishad Primary School. All rights reserved.
         </div>
     </footer>

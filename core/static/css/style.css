@@ -1,31 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
 
 :root {
-    --bg-gradient: #F8FAFC;
-    --sidebar-bg: rgba(255, 255, 255, 0.95);
-    --card-bg: #FFFFFF;
-    --glass-border: rgba(0, 0, 0, 0.06);
+    --bg-dark: #05060A;
+    --card-dark: #11141D;
+    --card-border: rgba(255, 255, 255, 0.08);
+    --glass-nav: rgba(5, 6, 10, 0.85);
     
-    --primary: #3F51B5;
-    --primary-hover: #303F9F;
-    --navy: #1B1E5C;
-    --mint: #00E6A8;
-    --accent: #F59E0B;
-    --success: #10B981;
-    --danger: #EF4444;
-    --info: #06B6D4;
-    --purple: #8B5CF6;
-    --pink: #EC4899;
+    --electric-blue: #0171E3;
+    --mint-cyan: #00E6A8;
+    --vibrant-pink: #EC4899;
+    --reward-gold: #F59E0B;
+    --primary: #0171E3;
 
-    --text-main: #111827;
-    --text-muted: #64748B;
+    --text-white: #FFFFFF;
+    --text-muted: #94A3B8;
 
+    --radius-xl: 32px;
     --radius-lg: 28px;
     --radius-md: 18px;
     --radius-sm: 12px;
     
-    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.04);
-    --shadow-hover: 0 20px 45px rgba(63, 81, 181, 0.14);
+    --shadow-glow: 0 0 50px rgba(1, 113, 227, 0.25);
+    --shadow-card: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
 * {
