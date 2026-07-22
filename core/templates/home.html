@@ -560,12 +560,12 @@
                 <i class="fa-brands fa-android"></i> Download App
             </a>
             {% if user.is_authenticated %}
-                <a href="{% url 'dashboard_home' %}" style="background: #111827; color: white; padding: 0.6rem 1.4rem; border-radius: 50px; text-decoration: none; font-weight: 800; font-size: 0.9rem;">
-                    <i class="fa-solid fa-gauge"></i> Admin Dashboard
+                <a href="{% url 'dashboard_home' %}" style="background: #0F172A; color: white; padding: 0.6rem 1.35rem; border-radius: 50px; text-decoration: none; font-weight: 800; font-size: 0.88rem; box-shadow: 0 4px 14px rgba(15, 23, 42, 0.15); display: inline-flex; align-items: center; gap: 0.45rem;">
+                    <i class="fa-solid fa-gauge" style="color: #60A5FA;"></i> Admin Dashboard
                 </a>
             {% else %}
-                <a href="{% url 'login' %}" style="background: #EC4899; color: white; padding: 0.6rem 1.4rem; border-radius: 50px; text-decoration: none; font-weight: 800; font-size: 0.9rem; box-shadow: 0 6px 18px rgba(236, 72, 153, 0.3);">
-                    <i class="fa-solid fa-right-to-bracket"></i> Portal Login
+                <a href="{% url 'login' %}" style="background: #FFFFFF; color: #0F172A; border: 1.5px solid #CBD5E1; padding: 0.58rem 1.35rem; border-radius: 50px; text-decoration: none; font-weight: 800; font-size: 0.88rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03); display: inline-flex; align-items: center; gap: 0.45rem; transition: all 0.3s ease;">
+                    <i class="fa-solid fa-user-shield" style="color: #3F51B5;"></i> Admin Portal
                 </a>
             {% endif %}
         </div>
