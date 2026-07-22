@@ -454,38 +454,54 @@
             margin-top: 5rem;
         }
 
-        /* Mobile View Rules matching reference image */
+        /* Complete Mobile & Tablet Responsiveness Rules */
+        @media (max-width: 1024px) {
+            .showcase-box {
+                grid-template-columns: 1fr;
+            }
+            .envato-stage-left {
+                padding: 3.5rem 2rem 2.5rem;
+                text-align: center;
+                align-items: center;
+            }
+            .envato-stage-subtitle {
+                max-width: 100%;
+            }
+            .envato-stage-right {
+                padding: 2.5rem 1rem;
+            }
+        }
+
         @media (max-width: 768px) {
             .navbar-clean {
-                padding: 1rem 1.25rem;
-                flex-wrap: wrap;
-                gap: 0.75rem;
+                padding: 0.85rem 1.25rem;
+                flex-direction: column;
+                gap: 0.85rem;
             }
             .nav-links-center {
-                gap: 1.25rem;
+                gap: 1rem;
             }
             .main-hero-headline {
-                font-size: 2.4rem;
+                font-size: 2.2rem !important;
+                letter-spacing: -0.5px !important;
             }
-            .showcase-box {
-                padding: 4rem 1rem 3rem;
+            .hero-subtitle-centered {
+                font-size: 1rem !important;
+            }
+            .feature-grid-clean {
+                grid-template-columns: 1fr;
+                gap: 1.25rem;
             }
             .phone-frame-mockup {
-                width: 280px;
-                height: 540px;
-            }
-            .floating-glass-badge {
-                position: relative !important;
-                top: auto !important;
-                bottom: auto !important;
-                left: auto !important;
-                right: auto !important;
-                transform: none !important;
-                margin: 0.35rem;
-                display: inline-flex;
+                width: 240px;
+                height: 480px;
+                border-width: 7px;
             }
             .container {
-                padding: 2rem 1rem;
+                padding: 1.5rem 1rem;
+            }
+            .footer-clean {
+                padding: 2.5rem 1.5rem 1.5rem;
             }
         }
     </style>
@@ -503,7 +519,10 @@
             <li><a href="#contact" class="nav-link-item">Contact</a></li>
         </ul>
 
-        <div>
+        <div style="display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap;">
+            <a href="#download" onclick="alert('BrightSteps Android App Download (.APK) starting...'); return false;" style="background: #10B981; color: white; padding: 0.6rem 1.25rem; border-radius: 50px; text-decoration: none; font-weight: 800; font-size: 0.88rem; box-shadow: 0 6px 18px rgba(16, 185, 129, 0.3); display: inline-flex; align-items: center; gap: 0.4rem;">
+                <i class="fa-brands fa-android"></i> Download App
+            </a>
             {% if user.is_authenticated %}
                 <a href="{% url 'dashboard_home' %}" style="background: #111827; color: white; padding: 0.6rem 1.4rem; border-radius: 50px; text-decoration: none; font-weight: 800; font-size: 0.9rem;">
                     <i class="fa-solid fa-gauge"></i> Admin Dashboard
@@ -534,6 +553,9 @@
             </p>
             
             <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2.5rem;">
+                <a href="#download" onclick="alert('BrightSteps Android App Download (.APK) starting...'); return false;" style="background: #10B981; color: white; padding: 0.95rem 2.25rem; border-radius: 50px; font-weight: 800; font-size: 1.05rem; text-decoration: none; box-shadow: 0 12px 28px rgba(16, 185, 129, 0.35); transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem;">
+                    <i class="fa-brands fa-android" style="font-size: 1.2rem;"></i> Download Android App
+                </a>
                 <a href="{% url 'login' %}" style="background: #3F51B5; color: white; padding: 0.95rem 2.25rem; border-radius: 50px; font-weight: 800; font-size: 1.05rem; text-decoration: none; box-shadow: 0 12px 28px rgba(63, 81, 181, 0.35); transition: all 0.3s ease;">
                     <i class="fa-solid fa-right-to-bracket"></i> Sign In to Portal
                 </a>
@@ -580,11 +602,15 @@
                     Smart digital education platform for Zilla Parishad primary students. Empowering learning with bilingual Marathi & English modules, attendance tracking, and star reward badges.
                 </p>
 
-                <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
                     <span class="envato-chip"><i class="fa-solid fa-star" style="color: #F59E0B;"></i> 370 Stars</span>
                     <span class="envato-chip"><i class="fa-solid fa-circle-check" style="color: #10B981;"></i> 87% Attendance</span>
                     <span class="envato-chip"><i class="fa-solid fa-book-open" style="color: #EC4899;"></i> Bilingual</span>
                 </div>
+
+                <a href="#download" onclick="alert('BrightSteps Android App Download (.APK) starting...'); return false;" style="background: #00E6A8; color: #0F172A; padding: 0.75rem 1.75rem; border-radius: 50px; font-weight: 900; font-size: 0.95rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: 0 10px 25px rgba(0,230,168,0.35);">
+                    <i class="fa-brands fa-android" style="font-size: 1.15rem;"></i> Download Android App (.APK)
+                </a>
             </div>
 
             <!-- Right Panel: Light Canvas with Concentric Teal Circles Aura & Dual Android Mockups -->

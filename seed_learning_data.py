@@ -343,4 +343,17 @@ for l in lessons_data:
 for q in quizzes_data:
     QuizQuestion.objects.create(**q)
 
+# Ensure default admin superuser (admin / admin123) exists
+from django.contrib.auth.models import User
+if not User.objects.filter(username='admin').exists():
+    User.objects.create_superuser('admin', 'admin@brightsteps.online', 'admin123')
+    print("Created superuser admin with password admin123")
+else:
+    u = User.objects.get(username='admin')
+    u.set_password('admin123')
+    u.is_superuser = True
+    u.is_staff = True
+    u.save()
+    print("Updated superuser admin password to admin123")
+
 print("Learning and Quiz data seeded successfully with grade levels!")
