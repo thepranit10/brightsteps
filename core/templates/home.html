@@ -520,7 +520,7 @@
         </ul>
 
         <div style="display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap;">
-            <a href="#download" onclick="alert('BrightSteps Android App Download (.APK) starting...'); return false;" style="background: #10B981; color: white; padding: 0.6rem 1.25rem; border-radius: 50px; text-decoration: none; font-weight: 800; font-size: 0.88rem; box-shadow: 0 6px 18px rgba(16, 185, 129, 0.3); display: inline-flex; align-items: center; gap: 0.4rem;">
+            <a href="{% static 'downloads/brightsteps-v1.0.apk' %}" download="brightsteps-v1.0.apk" style="background: #10B981; color: white; padding: 0.6rem 1.25rem; border-radius: 50px; text-decoration: none; font-weight: 800; font-size: 0.88rem; box-shadow: 0 6px 18px rgba(16, 185, 129, 0.3); display: inline-flex; align-items: center; gap: 0.4rem;">
                 <i class="fa-brands fa-android"></i> Download App
             </a>
             {% if user.is_authenticated %}
@@ -553,8 +553,8 @@
             </p>
             
             <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2.5rem;">
-                <a href="#download" onclick="alert('BrightSteps Android App Download (.APK) starting...'); return false;" style="background: #10B981; color: white; padding: 0.95rem 2.25rem; border-radius: 50px; font-weight: 800; font-size: 1.05rem; text-decoration: none; box-shadow: 0 12px 28px rgba(16, 185, 129, 0.35); transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem;">
-                    <i class="fa-brands fa-android" style="font-size: 1.2rem;"></i> Download Android App
+                <a href="{% static 'downloads/brightsteps-v1.0.apk' %}" download="brightsteps-v1.0.apk" style="background: #10B981; color: white; padding: 0.95rem 2.25rem; border-radius: 50px; font-weight: 800; font-size: 1.05rem; text-decoration: none; box-shadow: 0 12px 28px rgba(16, 185, 129, 0.35); transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem;">
+                    <i class="fa-brands fa-android" style="font-size: 1.2rem;"></i> Download Android App (.APK)
                 </a>
                 <a href="{% url 'login' %}" style="background: #3F51B5; color: white; padding: 0.95rem 2.25rem; border-radius: 50px; font-weight: 800; font-size: 1.05rem; text-decoration: none; box-shadow: 0 12px 28px rgba(63, 81, 181, 0.35); transition: all 0.3s ease;">
                     <i class="fa-solid fa-right-to-bracket"></i> Sign In to Portal
@@ -608,7 +608,7 @@
                     <span class="envato-chip"><i class="fa-solid fa-book-open" style="color: #EC4899;"></i> Bilingual</span>
                 </div>
 
-                <a href="#download" onclick="alert('BrightSteps Android App Download (.APK) starting...'); return false;" style="background: #00E6A8; color: #0F172A; padding: 0.75rem 1.75rem; border-radius: 50px; font-weight: 900; font-size: 0.95rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: 0 10px 25px rgba(0,230,168,0.35);">
+                <a href="{% static 'downloads/brightsteps-v1.0.apk' %}" download="brightsteps-v1.0.apk" style="background: #00E6A8; color: #0F172A; padding: 0.75rem 1.75rem; border-radius: 50px; font-weight: 900; font-size: 0.95rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: 0 10px 25px rgba(0,230,168,0.35);">
                     <i class="fa-brands fa-android" style="font-size: 1.15rem;"></i> Download Android App (.APK)
                 </a>
             </div>
