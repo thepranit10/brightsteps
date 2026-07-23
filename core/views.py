@@ -46,11 +46,13 @@ def custom_login(request):
         user = authenticate(request, username=u, password=p)
         if user is not None:
             login(request, user)
-            return redirect('dashboard_home')
+            next_url = request.GET.get('next') or request.POST.get('next')
+            return redirect(next_url if next_url else 'dashboard_home')
         else:
             return render(request, 'login.html', {'error': 'Invalid username or password'})
             
     return render(request, 'login.html')
+
 
 def custom_logout(request):
     logout(request)

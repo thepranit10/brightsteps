@@ -27,60 +27,112 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Sticky Glassmorphic White Navbar Header */
-        .navbar-clean {
-            background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid #E2E8F0;
-            padding: 1rem 3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        /* Floating Pill Dock Navbar (Cooldock style) */
+        .dock-nav-wrapper {
             position: sticky;
-            top: 0;
+            top: 1.25rem;
             z-index: 1000;
+            display: flex;
+            justify-content: center;
+            padding: 0 1rem;
+            width: 100%;
         }
 
-        .brand-logo {
+        .dock-nav-pill {
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.02);
+            border-radius: 100px;
+            padding: 0.45rem 0.55rem 0.45rem 0.65rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.75rem;
+            width: fit-content;
+            max-width: 100%;
+        }
+
+        /* Brand Section */
+        .dock-brand {
             display: flex;
             align-items: center;
             gap: 0.65rem;
-            font-weight: 900;
-            font-size: 1.4rem;
-            color: #0F172A;
             text-decoration: none;
+            padding-right: 0.5rem;
+        }
+
+        .dock-logo-square {
+            width: 38px;
+            height: 38px;
+            background: #000000;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFFFFF;
+            font-size: 1.15rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .dock-brand-text {
+            font-weight: 800;
+            font-size: 1.15rem;
+            color: #0F172A;
             letter-spacing: -0.5px;
         }
 
-        .brand-logo span {
-            color: #EC4899;
-        }
-
-        /* Center Segmented Pill Switcher */
-        .nav-pill-switcher {
-            background: #F1F5F9;
-            border: 1px solid #E2E8F0;
-            padding: 0.25rem;
-            border-radius: 50px;
+        /* Middle Nav Links */
+        .dock-nav-links {
             display: flex;
-            gap: 0.25rem;
+            align-items: center;
+            gap: 0.2rem;
         }
 
-        .nav-pill-btn {
-            padding: 0.45rem 1.15rem;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.85rem;
+        .dock-link {
             color: #64748B;
+            font-weight: 600;
+            font-size: 0.88rem;
             text-decoration: none;
-            transition: all 0.3s ease;
+            padding: 0.45rem 1rem;
+            border-radius: 50px;
+            transition: all 0.2s ease;
         }
 
-        .nav-pill-btn.active, .nav-pill-btn:hover {
-            background: #FFFFFF;
+        .dock-link:hover,
+        .dock-link.active {
             color: #0F172A;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            background: #F1F5F9;
+            font-weight: 700;
+        }
+
+        /* Right Button */
+        .dock-right-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .dock-btn-black {
+            background: #000000;
+            color: #FFFFFF;
+            padding: 0.55rem 1.35rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 0.88rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+            transition: all 0.2s ease;
+        }
+
+        .dock-btn-black:hover {
+            background: #1E293B;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
         }
 
         /* Container */
@@ -262,35 +314,34 @@
 </head>
 <body>
 
-    <!-- Sticky Navigation Header -->
-    <header class="navbar-clean">
-        <a href="{% url 'home_page' %}" class="brand-logo">
-            <i class="fa-solid fa-graduation-cap" style="color: #EC4899;"></i> Bright<span>Steps</span>
-        </a>
-
-        <!-- Center Segmented Pill Switcher -->
-        <div class="nav-pill-switcher">
-            <a href="{% url 'home_page' %}" class="nav-pill-btn">Home</a>
-            <a href="{% url 'about' %}" class="nav-pill-btn active">About</a>
-            <a href="{% if user.is_authenticated %}{% url 'dashboard_home' %}{% else %}{% url 'login' %}{% endif %}" class="nav-pill-btn">Dashboard</a>
-        </div>
-
-        <div style="display: flex; gap: 0.65rem; align-items: center; flex-wrap: wrap;">
-            <a href="{% static 'downloads/brightsteps-v1.0.apk' %}" download="brightsteps-v1.0.apk" class="btn-green-pill">
-                <i class="fa-brands fa-android"></i> Download App
+    <!-- Cooldock Style Floating Pill Header -->
+    <div class="dock-nav-wrapper">
+        <header class="dock-nav-pill">
+            <!-- Brand Logo -->
+            <a href="{% url 'home_page' %}" class="dock-brand">
+                <div class="dock-logo-square">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <span class="dock-brand-text">BrightSteps</span>
             </a>
 
-            {% if user.is_authenticated %}
-                <a href="{% url 'dashboard_home' %}" style="background: #0F172A; color: white; padding: 0.6rem 1.35rem; border-radius: 50px; text-decoration: none; font-weight: 800; font-size: 0.88rem; box-shadow: 0 4px 14px rgba(15, 23, 42, 0.15); display: inline-flex; align-items: center; gap: 0.45rem;">
-                    <i class="fa-solid fa-gauge" style="color: #60A5FA;"></i> Admin Dashboard
+            <!-- Center Navigation Links -->
+            <nav class="dock-nav-links">
+                <a href="{% url 'home_page' %}" class="dock-link">Home</a>
+                <a href="{% url 'about' %}" class="dock-link active">About</a>
+                <a href="{% url 'home_page' %}#students" class="dock-link">Features</a>
+                <a href="{% url 'home_page' %}#contact" class="dock-link">Contact</a>
+                <a href="{% if user.is_authenticated %}{% url 'dashboard_home' %}{% else %}{% url 'login' %}{% endif %}" class="dock-link">Dashboard</a>
+            </nav>
+
+            <!-- Right Actions -->
+            <div class="dock-right-actions">
+                <a href="{% static 'downloads/brightsteps-v1.0.apk' %}" download="brightsteps-v1.0.apk" class="dock-btn-black">
+                    <i class="fa-brands fa-android"></i> Download
                 </a>
-            {% else %}
-                <a href="{% url 'login' %}" class="btn-outline-pill">
-                    <i class="fa-solid fa-user-shield" style="color: #3F51B5;"></i> Admin Portal
-                </a>
-            {% endif %}
-        </div>
-    </header>
+            </div>
+        </header>
+    </div>
 
     <main class="container">
 
