@@ -437,14 +437,21 @@
         }
 
         .phone-frame-white {
-            width: 320px;
-            height: 620px;
-            background: #FFFFFF;
+            width: 350px;
+            height: 710px;
+            background: #F1F5F9;
             border-radius: 46px;
             border: 8px solid #0F172A;
-            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.15), 0 0 50px rgba(63, 81, 181, 0.12);
-            overflow: hidden;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.16), 0 0 50px rgba(63, 81, 181, 0.15);
+            overflow-y: auto;
+            overflow-x: hidden;
             position: relative;
+            text-align: left;
+            scrollbar-width: none;
+        }
+
+        .phone-frame-white::-webkit-scrollbar {
+            display: none;
         }
 
         /* Sticky Bottom Right QR Code Badge */
@@ -578,75 +585,183 @@
             <!-- Floating Android Phone Mockup Stage -->
             <div class="hero-phone-stage">
                 <div class="phone-frame-white">
-                    <!-- Status Bar -->
-                    <div
-                        style="background: #0F172A; padding: 0.6rem 1rem; display: flex; justify-content: space-between; align-items: center; font-weight: 800; font-size: 0.75rem; color: white;">
-                        <span>9:41</span>
-                        <span>5G <i class="fa-solid fa-battery-full"></i></span>
+                    
+                    <!-- Top Status Bar with Camera Notch -->
+                    <div style="background: #4338CA; padding: 0.5rem 1.25rem 0.35rem; display: flex; justify-content: space-between; align-items: center; color: white; font-size: 0.72rem; font-weight: 800; position: relative;">
+                        <!-- Camera Punch Hole -->
+                        <div style="position: absolute; top: 6px; left: 50%; transform: translateX(-50%); width: 12px; height: 12px; background: #000000; border-radius: 50%;"></div>
+                        <span>7:55</span>
+                        <div style="display: flex; gap: 0.35rem; align-items: center;">
+                            <span>5G</span>
+                            <i class="fa-solid fa-signal" style="font-size: 0.65rem;"></i>
+                            <i class="fa-solid fa-battery-full" style="font-size: 0.75rem;"></i>
+                        </div>
                     </div>
 
-                    <!-- App Bar Header -->
-                    <div
-                        style="background: linear-gradient(135deg, #1E1B4B 0%, #3F51B5 100%); padding: 1rem; color: white;">
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <!-- App Bar Header (Gradient Blue) -->
+                    <div style="background: linear-gradient(180deg, #4338CA 0%, #4F46E5 100%); padding: 0.75rem 1rem 2.25rem; color: white;">
+                        <!-- Logo & Controls Row -->
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
                             <div>
-                                <div style="font-weight: 900; font-size: 1.1rem; color: #EC4899;">BrightSteps</div>
-                                <div style="font-size: 0.72rem; color: #E0E7FF;">जिला परिषद प्राथमिक शाळा</div>
-                            </div>
-                            <span
-                                style="background: rgba(255,255,255,0.2); padding: 0.25rem 0.6rem; border-radius: 50px; font-size: 0.72rem; font-weight: 800;">मराठी
-                                EN</span>
-                        </div>
-                    </div>
-
-                    <!-- App Content Body -->
-                    <div style="padding: 1.25rem; background: #F8FAFC; min-height: 480px;">
-                        <div
-                            style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 20px; padding: 1.25rem; margin-bottom: 1rem; text-align: left; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
-                            <div
-                                style="color: #3F51B5; font-weight: 900; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 0.25rem;">
-                                नमस्कार, Aarav Patil!</div>
-                            <div style="color: #0F172A; font-weight: 800; font-size: 1.1rem;">इयत्ता १ ली (१-अ)</div>
-                        </div>
-
-                        <!-- Stats Row -->
-                        <div
-                            style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.5rem; margin-bottom: 1rem;">
-                            <div
-                                style="background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 14px; padding: 0.65rem; text-align: center;">
-                                <div style="color: #D97706; font-weight: 900; font-size: 1.1rem;">⭐ 370</div>
-                                <div style="color: #78350F; font-size: 0.65rem; font-weight: 700;">एकूण तारे</div>
-                            </div>
-
-                            <div
-                                style="background: #ECFDF5; border: 1px solid #A7F3D0; border-radius: 14px; padding: 0.65rem; text-align: center;">
-                                <div style="color: #059669; font-weight: 900; font-size: 1.1rem;">87%</div>
-                                <div style="color: #065F46; font-size: 0.65rem; font-weight: 700;">उपस्थिती</div>
-                            </div>
-
-                            <div
-                                style="background: #EEF2FF; border: 1px solid #C7D2FE; border-radius: 14px; padding: 0.65rem; text-align: center;">
-                                <div style="color: #4338CA; font-weight: 900; font-size: 1.1rem;">23</div>
-                                <div style="color: #3730A3; font-size: 0.65rem; font-weight: 700;">पूर्ण धडे</div>
-                            </div>
-                        </div>
-
-                        <!-- Lesson Card -->
-                        <div
-                            style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 16px; padding: 1rem; display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
-                            <div style="display: flex; align-items: center; gap: 0.75rem;">
-                                <div
-                                    style="width: 36px; height: 36px; border-radius: 10px; background: rgba(236, 72, 153, 0.1); color: #EC4899; display: flex; align-items: center; justify-content: center; font-weight: 900;">
-                                    文A</div>
-                                <div style="text-align: left;">
-                                    <div style="font-weight: 800; font-size: 0.88rem; color: #0F172A;">मराठी अक्षर ओळख
-                                    </div>
-                                    <div style="font-size: 0.72rem; color: #64748B;">स्वर व व्यंजन सराव</div>
+                                <div style="font-weight: 900; font-size: 1.2rem; color: #FFFFFF; letter-spacing: -0.3px;">
+                                    Bright<span style="color: #FDE047;">Steps</span>
+                                </div>
+                                <div style="font-size: 0.68rem; color: #E0E7FF; opacity: 0.9; font-weight: 600;">
+                                    <i class="fa-solid fa-graduation-cap"></i> जिल्हा परिषद प्राथमिक शाळा
                                 </div>
                             </div>
-                            <i class="fa-solid fa-chevron-right" style="color: #94A3B8; font-size: 0.8rem;"></i>
+                            
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <div style="background: #FFFFFF; color: #3730A3; padding: 0.25rem 0.6rem; border-radius: 50px; font-size: 0.68rem; font-weight: 800; display: flex; gap: 0.3rem;">
+                                    <span style="color: #4F46E5;">मराठी</span>
+                                    <span style="color: #94A3B8;">EN</span>
+                                </div>
+                                <div style="position: relative; background: rgba(255,255,255,0.2); width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fa-solid fa-bell" style="font-size: 0.8rem; color: white;"></i>
+                                    <span style="position: absolute; top: -2px; right: -2px; background: #F59E0B; color: white; border-radius: 50%; width: 14px; height: 14px; font-size: 0.55rem; font-weight: 900; display: flex; align-items: center; justify-content: center;">2</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- User Profile Header Banner -->
+                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                            <div style="width: 44px; height: 44px; border-radius: 50%; background: #6366F1; border: 2px solid rgba(255,255,255,0.4); color: white; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1rem;">
+                                आ
+                            </div>
+                            <div style="text-align: left;">
+                                <div style="font-weight: 800; font-size: 1rem; color: #FFFFFF;">नमस्कार, आरव पाटील!</div>
+                                <div style="background: rgba(255, 255, 255, 0.2); color: #FFFFFF; padding: 0.15rem 0.6rem; border-radius: 50px; font-size: 0.68rem; font-weight: 700; display: inline-block; margin-top: 0.15rem;">
+                                    इयत्ता 1 ली (1-अ)
+                                </div>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- Floating White Metric Stats Container -->
+                    <div style="background: #FFFFFF; border-radius: 22px; padding: 1rem 0.5rem; margin: -1.5rem 0.85rem 1rem 0.85rem; box-shadow: 0 10px 25px rgba(0,0,0,0.06); border: 1px solid #EEF2FF; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.2rem; text-align: center; position: relative; z-index: 10;">
+                        <!-- Star Stat -->
+                        <div style="padding: 0.25rem;">
+                            <div style="width: 36px; height: 36px; border-radius: 50%; background: #FEF3C7; color: #F59E0B; margin: 0 auto 0.35rem; display: flex; align-items: center; justify-content: center; font-size: 1rem;">
+                                ⭐
+                            </div>
+                            <div style="font-weight: 900; font-size: 1.15rem; color: #0F172A;">370</div>
+                            <div style="font-size: 0.68rem; color: #64748B; font-weight: 700; margin-top: 0.1rem;">एकूण तारे</div>
+                        </div>
+
+                        <!-- Attendance Stat -->
+                        <div style="padding: 0.25rem; border-left: 1px solid #F1F5F9; border-right: 1px solid #F1F5F9;">
+                            <div style="width: 36px; height: 36px; border-radius: 50%; background: #DCFCE7; color: #10B981; margin: 0 auto 0.35rem; display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 900;">
+                                87%
+                            </div>
+                            <div style="font-weight: 900; font-size: 1.15rem; color: #0F172A;">87%</div>
+                            <div style="font-size: 0.68rem; color: #64748B; font-weight: 700; margin-top: 0.1rem;">उपस्थिती</div>
+                        </div>
+
+                        <!-- Lessons Stat -->
+                        <div style="padding: 0.25rem;">
+                            <div style="width: 36px; height: 36px; border-radius: 50%; background: #E0E7FF; color: #4F46E5; margin: 0 auto 0.35rem; display: flex; align-items: center; justify-content: center; font-size: 1rem;">
+                                📖
+                            </div>
+                            <div style="font-weight: 900; font-size: 1.15rem; color: #0F172A;">23</div>
+                            <div style="font-size: 0.68rem; color: #64748B; font-weight: 700; margin-top: 0.1rem;">पूर्ण धडे</div>
+                        </div>
+                    </div>
+
+                    <!-- Today's Lesson Banner (Purple-Magenta Gradient) -->
+                    <div style="background: linear-gradient(135deg, #4338CA 0%, #D946EF 100%); border-radius: 20px; padding: 1.1rem 1.25rem; margin: 0 0.85rem 1.25rem 0.85rem; color: white; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 8px 20px rgba(67, 56, 202, 0.25);">
+                        <div style="text-align: left;">
+                            <div style="font-weight: 900; font-size: 1.1rem; margin-bottom: 0.2rem;">आजचे शिक्षण</div>
+                            <div style="font-size: 0.8rem; color: rgba(255,255,255,0.9); font-weight: 600;">मराठी स्वर - अ ते औ</div>
+                        </div>
+                        <div style="font-size: 2.2rem; opacity: 0.85;">
+                            <i class="fa-solid fa-book-open"></i>
+                        </div>
+                    </div>
+
+                    <!-- Subject Grid Section (विषय शिका) -->
+                    <div style="padding: 0 0.85rem; margin-bottom: 1.25rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                            <span style="font-weight: 900; font-size: 0.95rem; color: #0F172A;">विषय शिका</span>
+                            <span style="font-size: 0.78rem; color: #4F46E5; font-weight: 800; cursor: pointer;">सर्व</span>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem;">
+                            <!-- Marathi -->
+                            <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 16px; padding: 0.85rem 0.3rem; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+                                <div style="font-size: 1.4rem; font-weight: 900; color: #F97316; margin-bottom: 0.25rem;">अ</div>
+                                <div style="font-size: 0.75rem; font-weight: 800; color: #1E293B;">मराठी</div>
+                            </div>
+
+                            <!-- English -->
+                            <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 16px; padding: 0.85rem 0.3rem; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+                                <div style="font-size: 1.3rem; font-weight: 900; color: #EF4444; margin-bottom: 0.25rem;">Aa</div>
+                                <div style="font-size: 0.75rem; font-weight: 800; color: #1E293B;">इंग्रजी</div>
+                            </div>
+
+                            <!-- Maths -->
+                            <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 16px; padding: 0.85rem 0.3rem; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+                                <div style="width: 28px; height: 28px; background: #FEF3C7; border-radius: 50%; color: #D97706; margin: 0 auto 0.25rem; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 900;">
+                                    1+1=2
+                                </div>
+                                <div style="font-size: 0.75rem; font-weight: 800; color: #1E293B;">गणित</div>
+                            </div>
+
+                            <!-- Poem -->
+                            <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 16px; padding: 0.85rem 0.3rem; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+                                <div style="font-size: 1.25rem; color: #8B5CF6; margin-bottom: 0.25rem;">
+                                    <i class="fa-solid fa-music"></i>
+                                </div>
+                                <div style="font-size: 0.75rem; font-weight: 800; color: #1E293B;">कविता</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions Grid Section (जलद क्रिया) -->
+                    <div style="padding: 0 0.85rem; margin-bottom: 1.25rem;">
+                        <div style="font-weight: 900; font-size: 0.95rem; color: #0F172A; margin-bottom: 0.75rem; text-align: left;">
+                            जलद क्रिया
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem;">
+                            <!-- Quiz -->
+                            <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 18px; padding: 0.85rem 0.5rem; text-align: center;">
+                                <div style="width: 36px; height: 36px; background: #FEF3C7; border-radius: 12px; margin: 0 auto 0.4rem; display: flex; align-items: center; justify-content: center; color: #D97706; font-size: 0.9rem; font-weight: 900;">
+                                    <i class="fa-solid fa-square-check"></i>
+                                </div>
+                                <div style="font-size: 0.78rem; font-weight: 800; color: #0F172A;">क्विज</div>
+                            </div>
+
+                            <!-- Homework -->
+                            <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 18px; padding: 0.85rem 0.5rem; text-align: center;">
+                                <div style="width: 36px; height: 36px; background: #FFEDD5; border-radius: 12px; margin: 0 auto 0.4rem; display: flex; align-items: center; justify-content: center; color: #EA580C; font-size: 0.9rem;">
+                                    <i class="fa-solid fa-book-reader"></i>
+                                </div>
+                                <div style="font-size: 0.78rem; font-weight: 800; color: #0F172A;">गृहपाठ</div>
+                            </div>
+
+                            <!-- Timetable -->
+                            <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 18px; padding: 0.85rem 0.5rem; text-align: center;">
+                                <div style="width: 36px; height: 36px; background: #DCFCE7; border-radius: 12px; margin: 0 auto 0.4rem; display: flex; align-items: center; justify-content: center; color: #16A34A; font-size: 0.9rem;">
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                </div>
+                                <div style="font-size: 0.78rem; font-weight: 800; color: #0F172A;">वेळापत्रक</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Nav Pill Dock Bar -->
+                    <div style="position: sticky; bottom: 8px; left: 0; right: 0; padding: 0 0.75rem; margin-top: 1rem; z-index: 50;">
+                        <div style="background: #0F172A; border-radius: 50px; padding: 0.4rem 0.6rem; display: flex; justify-content: space-around; align-items: center; box-shadow: 0 10px 25px rgba(0,0,0,0.3);">
+                            <div style="background: #FFFFFF; color: #0F172A; padding: 0.4rem 0.9rem; border-radius: 50px; font-weight: 800; font-size: 0.75rem; display: flex; align-items: center; gap: 0.35rem;">
+                                <i class="fa-solid fa-house"></i> Home
+                            </div>
+                            <i class="fa-solid fa-book-open" style="color: #94A3B8; font-size: 0.9rem;"></i>
+                            <i class="fa-solid fa-clipboard-list" style="color: #94A3B8; font-size: 0.9rem;"></i>
+                            <i class="fa-solid fa-star" style="color: #94A3B8; font-size: 0.9rem;"></i>
+                            <i class="fa-solid fa-user" style="color: #94A3B8; font-size: 0.9rem;"></i>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
